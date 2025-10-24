@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/view/Item_list.dart';
+import 'package:flutter_market_sajo/view/add_item.dart';
+import 'package:flutter_market_sajo/view/no_item_list.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<ItemModel> list = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Image.asset("assets/images/logo.webp", height: 200),
+      ),
+      body: list.isNotEmpty ? NoItemList() : ItemList(),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFFA70E0E),
+        child: Icon(Icons.add, size: 50),
+        onPressed: () async {
+          var result = await Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => AddItem()));
+          list.add(result);
+        },
+      ),
+    );
+  }
+}
