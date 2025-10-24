@@ -6,7 +6,7 @@ class ItemModel {
   Image image; // 상품이미지
   String description; // 설명
   int productCount; // 제품 개수
-  bool? isCart = false; // 카드 여부
+  bool isCart = false; // 카드 여부
 
   ItemModel({
     required this.productName,
