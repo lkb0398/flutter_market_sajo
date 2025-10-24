@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/Item_list.dart';
+import 'package:flutter_market_sajo/view/item_list.dart';
 import 'package:flutter_market_sajo/view/add_item.dart';
 import 'package:flutter_market_sajo/view/no_item_list.dart';
 
