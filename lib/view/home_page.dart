@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () async {
           var result = await Navigator.of(
             context,
-          ).push(MaterialPageRoute(builder: (context) => AddItem()));
+          ).push(MaterialPageRoute(builder: (context) => AddItem(list: list)));
           list.add(result);
         },
       ),
