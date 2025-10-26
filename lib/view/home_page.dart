@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/Item_list.dart';
 import 'package:flutter_market_sajo/view/add_item.dart';
+import 'package:flutter_market_sajo/view/item_list.dart';
 import 'package:flutter_market_sajo/view/no_item_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,11 +31,8 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  AddItem(list: list, onEmptyChanged: onEmptyChanged),
-            ),
-          );
+          ).push(MaterialPageRoute(builder: (context) => AddItem(list: list)));
+          list.add(result);
         },
       ),
     );
