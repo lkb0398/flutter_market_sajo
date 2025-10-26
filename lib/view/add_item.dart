@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class AddItem extends StatelessWidget {
-  const AddItem({super.key, required this.list});
+class AddItem extends StatefulWidget {
+  const AddItem({super.key, required this.list, required this.onEmptyChanged});
+  // HomePage 받아오기
   final List<ItemModel> list;
+  final void Function() onEmptyChanged;
 
   @override
   State<AddItem> createState() => _AddItemState();
@@ -25,8 +28,53 @@ class _AddItemState extends State<AddItem> {
   // 페이지 구조
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF242424),
+        title: Image.asset("assets/images/logo.webp", height: 200),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 20,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadiusGeometry.circular(10),
+                child: GridView.count(
+                  padding: EdgeInsets.zero,
+                  crossAxisCount: 3,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: [
+                    Board(select, onSelectChanged, 'bronze_board'),
+                    Board(select, onSelectChanged, 'diamond_board'),
+                    Board(select, onSelectChanged, 'gold_board'),
+                    Board(select, onSelectChanged, 'jade_board'),
+                    Board(select, onSelectChanged, 'silver_board'),
+                    Board(select, onSelectChanged, 'wood_board'),
+                  ],
+                ),
+              ),
+              Name(context, nameController),
+              Price(context, priceController),
+              Text('상품 설명', style: TextStyle(fontSize: 15)),
+              Description(context, descriptionController),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Registeration(
+        context,
+        select,
+        nameController,
+        priceController,
+        descriptionController,
+        widget.list,
+        widget.onEmptyChanged,
+      ),
     );
   }
 }
