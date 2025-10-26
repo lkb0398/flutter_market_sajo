@@ -62,6 +62,18 @@
       "languageVersion": "3.8"
     },
     {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///Users/kb/development/sdk/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
+    },
+    {
+      "name": "fluttertoast",
+      "rootUri": "file:///Users/kb/.pub-cache/hosted/pub.dev/fluttertoast-9.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "leak_tracker",
       "rootUri": "file:///Users/kb/.pub-cache/hosted/pub.dev/leak_tracker-11.0.2",
       "packageUri": "lib/",
@@ -162,6 +174,12 @@
       "rootUri": "file:///Users/kb/.pub-cache/hosted/pub.dev/vm_service-15.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.5"
+    },
+    {
+      "name": "web",
+      "rootUri": "file:///Users/kb/.pub-cache/hosted/pub.dev/web-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "flutter_market_sajo",

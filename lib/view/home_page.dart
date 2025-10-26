@@ -28,12 +28,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFA70E0E),
         child: Icon(Icons.add, size: 50),
-        onPressed: () {
-          Navigator.push(
-            context,
-          ).push(MaterialPageRoute(builder: (context) => AddItem(list: list)));
-          list.add(result);
-        },
+        onPressed: () {},
       ),
     );
   }
