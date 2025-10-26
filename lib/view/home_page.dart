@@ -12,7 +12,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<ItemModel> list = [];
+  static List<ItemModel> list = [];
+  bool empty = list.isEmpty;
+  void onEmptyChanged() {
+    setState(() => empty == false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +24,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Image.asset("assets/images/logo.webp", height: 200),
       ),
-      body: list.isNotEmpty ? NoItemList() : ItemList(),
+      body: list.isEmpty ? NoItemList() : ItemList(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFA70E0E),
         child: Icon(Icons.add, size: 50),
-        onPressed: () async {
-          var result = await Navigator.of(
+        onPressed: () {
+          Navigator.push(
             context,
           ).push(MaterialPageRoute(builder: (context) => AddItem(list: list)));
           list.add(result);
