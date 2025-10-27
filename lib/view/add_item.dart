@@ -64,7 +64,7 @@ class _AddItemState extends State<AddItem> {
           ),
         ),
       ),
-      bottomNavigationBar: Registeration(
+      bottomNavigationBar: Registration(
         context,
         select,
         nameController,
@@ -160,7 +160,7 @@ Widget Description(context, descriptionController) {
   );
 }
 
-Widget Registeration(
+Widget Registration(
   context,
   select,
   nameController,
@@ -214,7 +214,7 @@ Widget Registeration(
       width: double.infinity,
       color: Color(0xFF242424),
       child: Image.asset(
-        'assets/images/registeration.webp',
+        'assets/images/registration.webp',
         fit: BoxFit.contain,
       ),
     ),
