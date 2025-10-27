@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:flutter_market_sajo/view/add_item.dart';
+import 'package:flutter_market_sajo/view/cart.dart';
 import 'package:flutter_market_sajo/view/item_list.dart';
 import 'package:flutter_market_sajo/view/no_item_list.dart';
 
@@ -22,8 +23,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset("assets/images/logo.webp", height: 200),
+        actions: [
+          IconButton(
+            padding: EdgeInsets.only(right: 10),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Cart()),
+            ),
+            icon: Icon(Icons.shopping_cart_outlined, size: 30),
+          ),
+        ],
       ),
-      body: list.isEmpty ? NoItemList() : ItemList(),
+      body: list.isEmpty ? NoItemList() : ItemList(list: list),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFA70E0E),
         child: Icon(Icons.add, size: 50),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 class AddItem extends StatefulWidget {
   const AddItem({super.key, required this.list, required this.onEmptyChanged});
   // HomePage 받아오기
@@ -9,6 +10,7 @@ class AddItem extends StatefulWidget {
   @override
   State<AddItem> createState() => _AddItemState();
 }
+
 class _AddItemState extends State<AddItem> {
   // select = 선택한 이미지
   // onSelectChanged = select 상태 변경 후 페이지 rebuild
@@ -16,6 +18,7 @@ class _AddItemState extends State<AddItem> {
   void onSelectChanged(newSelect) {
     setState(() => select = newSelect);
   }
+
   // TextField 입력값 받기
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
@@ -61,7 +64,7 @@ class _AddItemState extends State<AddItem> {
           ),
         ),
       ),
-      bottomNavigationBar: Registeration(
+      bottomNavigationBar: Registration(
         context,
         select,
         nameController,
@@ -73,6 +76,7 @@ class _AddItemState extends State<AddItem> {
     );
   }
 }
+
 // 위젯
 Widget Board(select, onSelectChanged, String board) {
   return GestureDetector(
@@ -85,6 +89,7 @@ Widget Board(select, onSelectChanged, String board) {
     ),
   );
 }
+
 Widget Name(context, nameController) {
   return Row(
     spacing: 20,
@@ -109,6 +114,7 @@ Widget Name(context, nameController) {
     ],
   );
 }
+
 Widget Price(context, priceController) {
   return Row(
     spacing: 20,
@@ -134,6 +140,7 @@ Widget Price(context, priceController) {
     ],
   );
 }
+
 Widget Description(context, descriptionController) {
   return Container(
     decoration: BoxDecoration(
@@ -152,7 +159,8 @@ Widget Description(context, descriptionController) {
     ),
   );
 }
-Widget Registeration(
+
+Widget Registration(
   context,
   select,
   nameController,
@@ -192,7 +200,7 @@ Widget Registeration(
           ItemModel(
             productName: nameController.text,
             price: int.parse(priceController.text),
-            image: Image.asset('assets/images/$select.webp'),
+            image: Image.asset('assets/images/$select.webp', height: 100),
             description: descriptionController.text,
           ),
         );
@@ -206,7 +214,7 @@ Widget Registeration(
       width: double.infinity,
       color: Color(0xFF242424),
       child: Image.asset(
-        'assets/images/registeration.webp',
+        'assets/images/registration.webp',
         fit: BoxFit.contain,
       ),
     ),
