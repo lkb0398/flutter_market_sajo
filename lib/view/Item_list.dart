@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/view/modify_item.dart';
 
 class ItemList extends StatefulWidget {
   const ItemList({super.key, required this.list});
+
   final List<ItemModel> list;
 
   @override
@@ -16,9 +18,12 @@ class _ItemListState extends State<ItemList> {
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onLongPress: () {
-            // ModifyItem(widget.list[index]);
-          },
+          onLongPress: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ModifyItem(itemModel: widget.list[index]),
+            ),
+          ),
           child: Row(
             children: [
               widget.list[index].image,
