@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class AddItem extends StatefulWidget {
@@ -15,6 +16,7 @@ class _AddItemState extends State<AddItem> {
   // select = 선택한 이미지
   // onSelectChanged = select 상태 변경 후 페이지 rebuild
   String? select;
+
   void onSelectChanged(newSelect) {
     setState(() => select = newSelect);
   }
@@ -27,10 +29,7 @@ class _AddItemState extends State<AddItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF242424),
-        title: Image.asset("assets/images/logo.webp", height: 200),
-      ),
+      appBar: AppBar(backgroundColor: Color(0xFF242424), title: TitleImage()),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -64,7 +63,7 @@ class _AddItemState extends State<AddItem> {
           ),
         ),
       ),
-      bottomNavigationBar: Registration(
+      bottomNavigationBar: registration(
         context,
         select,
         nameController,
@@ -160,7 +159,7 @@ Widget description(context, descriptionController) {
   );
 }
 
-Widget Registration(
+Widget registration(
   context,
   select,
   nameController,

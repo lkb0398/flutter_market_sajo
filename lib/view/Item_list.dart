@@ -15,17 +15,22 @@ class _ItemListState extends State<ItemList> {
     return ListView.builder(
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
-        return Row(
-          children: [
-            widget.list[index].image,
-            Column(
-              children: [
-                Text(widget.list[index].productName),
-                Text(widget.list[index].price.toString()),
-                Text(widget.list[index].description),
-              ],
-            ),
-          ],
+        return InkWell(
+          onLongPress: () {
+            // ModifyItem(widget.list[index]);
+          },
+          child: Row(
+            children: [
+              widget.list[index].image,
+              Column(
+                children: [
+                  Text(widget.list[index].productName),
+                  Text(widget.list[index].price.toString()),
+                  Text(widget.list[index].description),
+                ],
+              ),
+            ],
+          ),
         );
       },
     );
