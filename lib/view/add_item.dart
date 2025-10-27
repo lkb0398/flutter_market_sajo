@@ -203,7 +203,7 @@ Widget Registration(
           ItemModel(
             productName: nameController.text,
             price: int.parse(priceController.text),
-            image: Image.asset('assets/images/$select.webp'),
+            image: Image.asset('assets/images/$select.webp', height: 100),
             description: descriptionController.text,
           ),
         );
