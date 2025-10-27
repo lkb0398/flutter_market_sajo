@@ -7,7 +7,6 @@ class AddItem extends StatefulWidget {
   // HomePage 받아오기
   final List<ItemModel> list;
   final void Function() onEmptyChanged;
-
   @override
   State<AddItem> createState() => _AddItemState();
 }
@@ -24,7 +23,6 @@ class _AddItemState extends State<AddItem> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-
   // 페이지 구조
   @override
   Widget build(BuildContext context) {
@@ -80,7 +78,6 @@ class _AddItemState extends State<AddItem> {
 }
 
 // 위젯
-
 Widget Board(select, onSelectChanged, String board) {
   return GestureDetector(
     onTap: () => onSelectChanged(board),

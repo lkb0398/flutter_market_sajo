@@ -8,7 +8,6 @@ class ItemModel {
   String description; // 설명
   int? productCount; // 제품 개수
   List<Image>? imageList; // 이미지 보기 목록
-
   ItemModel({
     this.title,
     required this.productName,
