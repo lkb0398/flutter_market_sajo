@@ -1,30 +1,46 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddItem extends StatefulWidget {
   const AddItem({super.key, required this.list, required this.onEmptyChanged});
   // HomePage 받아오기
   final List<ItemModel> list;
   final void Function() onEmptyChanged;
+
   @override
   State<AddItem> createState() => _AddItemState();
 }
 
 class _AddItemState extends State<AddItem> {
-  // select = 선택한 이미지
-  // onSelectChanged = select 상태 변경 후 페이지 rebuild
-  String? select;
-
-  void onSelectChanged(newSelect) {
-    setState(() => select = newSelect);
-  }
-
-  // TextField 입력값 받기
+  // 사용자 입력값 받기 (TextField)
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
+  // 앨범에서 이미지 가져오기 (ImagePicker)
+  File? image;
+  void selectImage() {
+    ImagePicker()
+        // 갤러리 열기 > return Future<XFile?>
+        .pickImage(source: ImageSource.gallery)
+        // 갤러리에서 파일 선택 후 실행할 코드
+        .then((pickedFile) {
+          if (pickedFile != null) {
+            // 선택된 이미지가 있으면 File(pickedFile.path)로 변환 후 image에 저장
+            setState(() => image = File(pickedFile.path));
+          } else {
+            Fluttertoast.showToast(msg: "이미지 선택 취소");
+          }
+        })
+        .catchError((err) {
+          Fluttertoast.showToast(msg: "이미지 선택 중 오류 발생: $err");
+        });
+  }
+
   // 페이지 구조
   @override
   Widget build(BuildContext context) {
@@ -38,34 +54,33 @@ class _AddItemState extends State<AddItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadiusGeometry.circular(10),
-                child: GridView.count(
-                  padding: EdgeInsets.zero,
-                  crossAxisCount: 3,
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: [
-                    board(select, onSelectChanged, 'bronze_board'),
-                    board(select, onSelectChanged, 'diamond_board'),
-                    board(select, onSelectChanged, 'gold_board'),
-                    board(select, onSelectChanged, 'jade_board'),
-                    board(select, onSelectChanged, 'silver_board'),
-                    board(select, onSelectChanged, 'wood_board'),
-                  ],
+              GestureDetector(
+                onTap: selectImage,
+                child: ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(10),
+                  child: AspectRatio(
+                    aspectRatio: 3 / 2,
+                    child: Container(
+                      width: double.infinity,
+                      color: Color(0xFF242424),
+                      child: image != null
+                          ? Image.file(image!, fit: BoxFit.cover)
+                          : Center(child: Text("이미지 선택")),
+                    ),
+                  ),
                 ),
               ),
-              name(context, nameController),
-              price(context, priceController),
+              Name(context, nameController),
+              Price(context, priceController),
               Text('상품 설명', style: TextStyle(fontSize: 15)),
-              description(context, descriptionController),
+              Description(context, descriptionController),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: registration(
+      bottomNavigationBar: Registeration(
         context,
-        select,
+        image,
         nameController,
         priceController,
         descriptionController,
@@ -77,7 +92,8 @@ class _AddItemState extends State<AddItem> {
 }
 
 // 위젯
-Widget board(select, onSelectChanged, String board) {
+
+Widget Board(select, onSelectChanged, String board) {
   return GestureDetector(
     onTap: () => onSelectChanged(board),
     child: Container(
@@ -89,7 +105,7 @@ Widget board(select, onSelectChanged, String board) {
   );
 }
 
-Widget name(context, nameController) {
+Widget Name(context, nameController) {
   return Row(
     spacing: 20,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,7 +130,7 @@ Widget name(context, nameController) {
   );
 }
 
-Widget price(context, priceController) {
+Widget Price(context, priceController) {
   return Row(
     spacing: 20,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +156,7 @@ Widget price(context, priceController) {
   );
 }
 
-Widget description(context, descriptionController) {
+Widget Description(context, descriptionController) {
   return Container(
     decoration: BoxDecoration(
       border: Border.all(color: Colors.white),
@@ -159,21 +175,19 @@ Widget description(context, descriptionController) {
   );
 }
 
-Widget registration(
-  context,
-  select,
-  nameController,
-  priceController,
-  descriptionController,
-  list,
-  onEmptyChanged,
+Widget Registeration(
+  BuildContext context,
+  File? image,
+  TextEditingController nameController,
+  TextEditingController priceController,
+  TextEditingController descriptionController,
+  List<ItemModel> list,
+  Function onEmptyChanged,
 ) {
   return GestureDetector(
     onTap: () {
       // 예외 처리
-      if (select == null) {
-        Fluttertoast.showToast(msg: "상품을 선택하세요", gravity: ToastGravity.CENTER);
-      } else if (nameController.text.isEmpty) {
+      if (nameController.text.isEmpty) {
         Fluttertoast.showToast(
           msg: "상품 이름을 입력하세요",
           gravity: ToastGravity.CENTER,
@@ -199,7 +213,7 @@ Widget registration(
           ItemModel(
             productName: nameController.text,
             price: int.parse(priceController.text),
-            image: Image.asset('assets/images/$select.webp', height: 100),
+            image: Image.file(image!, height: 100),
             description: descriptionController.text,
           ),
         );

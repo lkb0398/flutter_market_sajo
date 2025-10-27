@@ -6,7 +6,6 @@ class ItemList extends StatefulWidget {
   const ItemList({super.key, required this.list});
 
   final List<ItemModel> list;
-
   @override
   State<ItemList> createState() => _ItemListState();
 }
