@@ -33,11 +33,17 @@ class _AddItemState extends State<AddItem> {
             // 선택된 이미지가 있으면 File(pickedFile.path)로 변환 후 image에 저장
             setState(() => image = File(pickedFile.path));
           } else {
-            Fluttertoast.showToast(msg: "이미지 선택 취소");
+            Fluttertoast.showToast(
+              msg: "이미지 선택 취소",
+              gravity: ToastGravity.CENTER,
+            );
           }
         })
         .catchError((err) {
-          Fluttertoast.showToast(msg: "이미지 선택 중 오류 발생: $err");
+          Fluttertoast.showToast(
+            msg: "이미지 선택 중 오류 발생: $err",
+            gravity: ToastGravity.CENTER,
+          );
         });
   }
 
