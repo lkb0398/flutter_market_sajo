@@ -15,7 +15,7 @@ class ItemModel {
     required this.price,
     required this.image,
     required this.description,
-    this.productCount,
+    this.productCount = 1,
     this.cart = false,
   });
 }
