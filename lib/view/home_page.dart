@@ -4,6 +4,7 @@ import 'package:flutter_market_sajo/view/add_item.dart';
 import 'package:flutter_market_sajo/view/cart.dart';
 import 'package:flutter_market_sajo/view/item_list.dart';
 import 'package:flutter_market_sajo/view/no_item_list.dart';
+import 'package:flutter_market_sajo/view/title_image.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
