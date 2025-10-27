@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/view/detail_item.dart';
 
 class ItemList extends StatefulWidget {
   const ItemList({super.key, required this.list});
@@ -15,17 +16,27 @@ class _ItemListState extends State<ItemList> {
     return ListView.builder(
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
-        return Row(
-          children: [
-            widget.list[index].image,
-            Column(
-              children: [
-                Text(widget.list[index].productName),
-                Text(widget.list[index].price.toString()),
-                Text(widget.list[index].description),
-              ],
-            ),
-          ],
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailItem(itemModel: widget.list[index]),
+              ),
+            );
+          },
+          child: Row(
+            children: [
+              widget.list[index].image,
+              Column(
+                children: [
+                  Text(widget.list[index].productName),
+                  Text(widget.list[index].price.toString()),
+                  Text(widget.list[index].description),
+                ],
+              ),
+            ],
+          ),
         );
       },
     );

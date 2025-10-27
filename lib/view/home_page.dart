@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   static List<ItemModel> list = [];
+  // 타입 변수명 = 값;
   bool empty = list.isEmpty;
   void onEmptyChanged() {
     setState(() => empty == false);
