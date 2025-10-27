@@ -6,8 +6,8 @@ class ItemModel {
   int price; // 상품 가격
   Image image; // 상품이미지
   String description; // 설명
-  int? productCount; // 제품 개수
-  List<Image>? imageList; // 이미지 보기 목록
+  int? productCount;
+  bool cart; // 제품 개수
 
   ItemModel({
     this.title,
@@ -16,6 +16,6 @@ class ItemModel {
     required this.image,
     required this.description,
     this.productCount,
-    this.imageList,
+    this.cart = false,
   });
 }
