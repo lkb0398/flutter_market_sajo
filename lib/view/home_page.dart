@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   bool empty = list.isEmpty;
   void onEmptyChanged() {
     setState(() => empty == false);
+    print(list.length);
   }
 
   @override
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Image.asset("assets/images/logo.webp", height: 200),
       ),
-      body: list.isEmpty ? NoItemList() : ItemList(),
+      body: list.isEmpty ? NoItemList() : ItemList(list: list),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFA70E0E),
         child: Icon(Icons.add, size: 50),

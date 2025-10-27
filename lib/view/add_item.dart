@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 class AddItem extends StatefulWidget {
   const AddItem({super.key, required this.list, required this.onEmptyChanged});
   // HomePage 받아오기
@@ -9,6 +10,7 @@ class AddItem extends StatefulWidget {
   @override
   State<AddItem> createState() => _AddItemState();
 }
+
 class _AddItemState extends State<AddItem> {
   // select = 선택한 이미지
   // onSelectChanged = select 상태 변경 후 페이지 rebuild
@@ -16,6 +18,7 @@ class _AddItemState extends State<AddItem> {
   void onSelectChanged(newSelect) {
     setState(() => select = newSelect);
   }
+
   // TextField 입력값 받기
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
@@ -44,24 +47,24 @@ class _AddItemState extends State<AddItem> {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   children: [
-                    Board(select, onSelectChanged, 'bronze_board'),
-                    Board(select, onSelectChanged, 'diamond_board'),
-                    Board(select, onSelectChanged, 'gold_board'),
-                    Board(select, onSelectChanged, 'jade_board'),
-                    Board(select, onSelectChanged, 'silver_board'),
-                    Board(select, onSelectChanged, 'wood_board'),
+                    board(select, onSelectChanged, 'bronze_board'),
+                    board(select, onSelectChanged, 'diamond_board'),
+                    board(select, onSelectChanged, 'gold_board'),
+                    board(select, onSelectChanged, 'jade_board'),
+                    board(select, onSelectChanged, 'silver_board'),
+                    board(select, onSelectChanged, 'wood_board'),
                   ],
                 ),
               ),
-              Name(context, nameController),
-              Price(context, priceController),
+              name(context, nameController),
+              price(context, priceController),
               Text('상품 설명', style: TextStyle(fontSize: 15)),
-              Description(context, descriptionController),
+              description(context, descriptionController),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: Registeration(
+      bottomNavigationBar: Registration(
         context,
         select,
         nameController,
@@ -73,8 +76,9 @@ class _AddItemState extends State<AddItem> {
     );
   }
 }
+
 // 위젯
-Widget Board(select, onSelectChanged, String board) {
+Widget board(select, onSelectChanged, String board) {
   return GestureDetector(
     onTap: () => onSelectChanged(board),
     child: Container(
@@ -85,7 +89,8 @@ Widget Board(select, onSelectChanged, String board) {
     ),
   );
 }
-Widget Name(context, nameController) {
+
+Widget name(context, nameController) {
   return Row(
     spacing: 20,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +114,8 @@ Widget Name(context, nameController) {
     ],
   );
 }
-Widget Price(context, priceController) {
+
+Widget price(context, priceController) {
   return Row(
     spacing: 20,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,7 +140,8 @@ Widget Price(context, priceController) {
     ],
   );
 }
-Widget Description(context, descriptionController) {
+
+Widget description(context, descriptionController) {
   return Container(
     decoration: BoxDecoration(
       border: Border.all(color: Colors.white),
@@ -152,7 +159,8 @@ Widget Description(context, descriptionController) {
     ),
   );
 }
-Widget Registeration(
+
+Widget Registration(
   context,
   select,
   nameController,
@@ -192,7 +200,7 @@ Widget Registeration(
           ItemModel(
             productName: nameController.text,
             price: int.parse(priceController.text),
-            image: Image.asset('assets/images/$select.webp'),
+            image: Image.asset('assets/images/$select.webp', height: 100),
             description: descriptionController.text,
           ),
         );
@@ -206,7 +214,7 @@ Widget Registeration(
       width: double.infinity,
       color: Color(0xFF242424),
       child: Image.asset(
-        'assets/images/registeration.webp',
+        'assets/images/registration.webp',
         fit: BoxFit.contain,
       ),
     ),
