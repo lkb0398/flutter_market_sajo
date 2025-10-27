@@ -8,6 +8,7 @@ class ItemModel {
   String description; // 설명
   int? productCount;
   bool cart; // 제품 개수
+  String? imagePath;
 
   ItemModel({
     this.title,
@@ -17,5 +18,6 @@ class ItemModel {
     required this.description,
     this.productCount,
     this.cart = false,
+    this.imagePath,
   });
 }

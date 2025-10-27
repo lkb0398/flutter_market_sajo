@@ -17,16 +17,29 @@ class _ItemListState extends State<ItemList> {
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onLongPress: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ModifyItem(itemModel: widget.list[index]),
-            ),
-          ),
+          onLongPress: () async {
+            // 기존 단순 push → async-await 구조로 변경
+            final updatedItem = await Navigator.push(
+              // 수정된 데이터 받을 준비
+              context,
+              MaterialPageRoute(
+                builder: (context) => ModifyItem(itemModel: widget.list[index]),
+              ),
+            );
+
+            if (updatedItem != null) {
+              // 수정된 데이터가 있을 경우
+              setState(() {
+                widget.list[index] = updatedItem; // 리스트 내 데이터 갱신
+              });
+            }
+          },
           child: Row(
             children: [
               widget.list[index].image,
+              SizedBox(width: 10),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(widget.list[index].productName),
                   Text(widget.list[index].price.toString()),
