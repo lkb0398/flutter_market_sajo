@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 
+// 상품 상세 화면
+// 홈에서 상품을 클릭하면 디테일 화면으로 이동
 class ProductDetailPage extends StatefulWidget {
   const ProductDetailPage({super.key, required this.item});
   final ItemModel item;
@@ -13,12 +15,13 @@ class ProductDetailPage extends StatefulWidget {
 class _ProductDetailPageState extends State<ProductDetailPage> {
   late int qty;
 
+// 처음 수량은 1로 설정되어 있음
   @override
   void initState() {
     super.initState();
     qty = widget.item.productCount ?? 1;
   }
-
+// 정수 가격을 콤마 붙인 문자열로 변환
   String _formatWon(int value) {
     final s = value.toString();
     final buf = StringBuffer();
