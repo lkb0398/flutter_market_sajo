@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/Item_list.dart';
 import 'package:flutter_market_sajo/view/add_item.dart';
+import 'package:flutter_market_sajo/view/item_list.dart';
 import 'package:flutter_market_sajo/view/no_item_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  List<ItemModel> list = [];
+  static List<ItemModel> list = [];
+  bool empty = list.isEmpty;
+  void onEmptyChanged() {
+    setState(() => empty == false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +23,19 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Image.asset("assets/images/logo.webp", height: 200),
       ),
-      body: list.isNotEmpty ? NoItemList() : ItemList(),
+      body: list.isEmpty ? NoItemList() : ItemList(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFA70E0E),
         child: Icon(Icons.add, size: 50),
-        onPressed: () async {
-          var result = await Navigator.of(
+        onPressed: () {
+          Navigator.push(
             context,
-          ).push(MaterialPageRoute(builder: (context) => AddItem()));
-          list.add(result);
+            MaterialPageRoute(
+              builder: (context) {
+                return AddItem(list: list, onEmptyChanged: onEmptyChanged);
+              },
+            ),
+          );
         },
       ),
     );
