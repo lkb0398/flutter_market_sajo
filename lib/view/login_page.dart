@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/login_info.dart';
 import 'package:flutter_market_sajo/view/home_page.dart';
+import 'package:flutter_market_sajo/view/text_input_box.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -20,10 +21,35 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LoginBox("아이디", "admin", idController),
+            // 아이디 입력
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 10,
+              children: [
+                Text("아이디"),
+                TextInputBox(
+                  maxLines: 1,
+                  controller: idController,
+                  hintText: "admin",
+                ),
+              ],
+            ),
             SizedBox(height: 20),
-            LoginBox("비밀번호", "sajo1004", pwController),
+            // 비밀번호 입력
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 10,
+              children: [
+                Text("비밀번호"),
+                TextInputBox(
+                  maxLines: 1,
+                  controller: pwController,
+                  hintText: "sajo1004",
+                ),
+              ],
+            ),
             SizedBox(height: 50),
+            // 등록하기
             GestureDetector(
               onTap: () {
                 // 예외 처리
@@ -32,7 +58,7 @@ class LoginPage extends StatelessWidget {
                     msg: "아이디를 입력하세요",
                     gravity: ToastGravity.CENTER,
                   );
-                } else if (idController.text != LoginModel().id) {
+                } else if (idController.text != LoginInfo().id) {
                   Fluttertoast.showToast(
                     msg: "잘못된 아이디입니다",
                     gravity: ToastGravity.CENTER,
@@ -42,7 +68,7 @@ class LoginPage extends StatelessWidget {
                     msg: "비밀번호를 입력하세요",
                     gravity: ToastGravity.CENTER,
                   );
-                } else if (pwController.text != LoginModel().pw) {
+                } else if (pwController.text != LoginInfo().pw) {
                   Fluttertoast.showToast(
                     msg: "잘못된 비밀번호입니다",
                     gravity: ToastGravity.CENTER,
@@ -63,12 +89,7 @@ class LoginPage extends StatelessWidget {
                 height: 50,
                 width: double.infinity,
                 color: Color(0xFFA70E0E),
-                child: Center(
-                  child: Text(
-                    "로그인",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
+                child: Center(child: Text("로그인")),
               ),
             ),
           ],
@@ -76,33 +97,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-}
-
-// 위젯
-
-Widget LoginBox(String text, String hint, TextEditingController controller) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    spacing: 10,
-    children: [
-      Text(text),
-      Container(
-        padding: EdgeInsets.only(left: 10, right: 10, bottom: 4),
-        height: 40,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextField(
-          controller: controller,
-          maxLines: 1,
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(color: Color.fromARGB(255, 164, 164, 164)),
-            border: InputBorder.none,
-          ),
-        ),
-      ),
-    ],
-  );
 }

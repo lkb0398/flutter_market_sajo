@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+
+class TextInputBox extends StatelessWidget {
+  const TextInputBox({
+    super.key,
+    required this.maxLines,
+    required this.controller,
+    this.hintText = "",
+  });
+
+  final int maxLines;
+  final TextEditingController controller;
+  final String hintText;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      onTapOutside: (event) => FocusScope.of(context).unfocus(),
+      controller: controller,
+      maxLines: maxLines,
+      cursorColor: Color(0xFFA70E0E),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(8),
+        border: OutlineInputBorder(),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFFA70E0E), width: 2),
+        ),
+        hintText: hintText,
+        hintStyle: TextStyle(color: Color.fromARGB(255, 164, 164, 164)),
+      ),
+    );
+  }
+}
