@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:flutter_market_sajo/view/detail_item.dart';
-import 'package:flutter_market_sajo/view/modify_item.dart';
 import 'package:intl/intl.dart';
 
-class ItemList extends StatefulWidget {
-  const ItemList({super.key, required this.list});
-
+class CartItem extends StatefulWidget {
+  const CartItem({super.key, required this.list});
   final List<ItemModel> list;
+
   @override
-  State<ItemList> createState() => _ItemListState();
+  State<CartItem> createState() => _CartItemState();
 }
 
-class _ItemListState extends State<ItemList> {
+class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -23,23 +22,23 @@ class _ItemListState extends State<ItemList> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DetailItem(list: widget.list, index: index,)
+                builder: (context) => DetailItem(list: widget.list, index: index),
               ),
             );
           },
-          onLongPress: () async {
-            final updatedItem = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ModifyItem(itemModel: widget.list[index]),
-              ),
-            );
-            if (updatedItem != null) {
-              setState(() {
-                widget.list[index] = updatedItem;
-              });
-            }
-          },
+          // onLongPress: () async {
+          //   final updatedItem = await Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => ModifyItem(itemModel: widget.list[index]),
+          //     ),
+          //   );
+          //   if (updatedItem != null) {
+          //     setState(() {
+          //       widget.list[index] = updatedItem;
+          //     });
+          //   }
+          // },
           child: Container(
             margin: EdgeInsets.all(10),
             child: Row(
@@ -62,7 +61,11 @@ class _ItemListState extends State<ItemList> {
                     ),
 
                     Text(
-                      "${NumberFormat("#,###").format(widget.list[index].price)}원",
+                      "${NumberFormat("#,###").format(widget.list[index].price * widget.list[index].productCount)}원",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text(
+                      "${NumberFormat("#,###").format(widget.list[index].productCount)}개",
                       style: TextStyle(fontSize: 15),
                     ),
                   ],

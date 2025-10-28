@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<ItemModel> list = [];
+
   void onEmptyChanged() {
     setState(() {});
   }
@@ -24,10 +25,11 @@ class _HomePageState extends State<HomePage> {
         title: Image.asset("assets/images/logo.webp", height: 200),
         actions: [
           IconButton(
-            onPressed: () => Navigator.push(
+            onPressed: () { Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Cart(list: [])),
-            ),
+              MaterialPageRoute(builder: (context) => Cart(list: list)),
+            );
+              },
             icon: Icon(Icons.shopping_cart_outlined, size: 30),
           ),
         ],
