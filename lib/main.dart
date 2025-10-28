@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/view/home_page.dart';
+import 'package:flutter_market_sajo/view/login_page.dart';
 import 'package:flutter_market_sajo/view/splash_screen.dart';
 
 void main() {
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
       home: SplashScreen(), // 스플레시 화면
-      routes: {'/home': (context) => HomePage()}, // Route 로 홈 화면 설정
+      routes: {
+        '/login': (context) => LoginPage(),
+        '/home': (context) => HomePage(),
+      }, // Route 로 홈 화면 설정
     );
   }
 }
