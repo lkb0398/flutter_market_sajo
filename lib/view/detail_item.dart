@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
+
 class DetailItem extends StatefulWidget {
   const DetailItem({super.key, required this.itemModel});
   final ItemModel itemModel;
   @override
   State<DetailItem> createState() => _DetailItemState();
 }
+
 class _DetailItemState extends State<DetailItem> {
   int number = 1;
   String formatPrice(int value) {
@@ -23,6 +25,7 @@ class _DetailItemState extends State<DetailItem> {
     }
     return result;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
