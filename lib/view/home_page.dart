@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: list.isEmpty ? NoItemList() : ItemList(list: list),
+      body: (list.isEmpty ? NoItemList() : ItemList(list: list)),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFA70E0E),
         shape: CircleBorder(),
