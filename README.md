@@ -1,16 +1,108 @@
-# flutter_market_sajo
+<h1 align="center">
+장기밀매
+</h1>
+<p align="center">
+<img alt="브로셔 이미지" src=""/>
+</p>
 
-A new Flutter project.
 
-## Getting Started
+## 프로젝트 개요
+### “장기밀매" 는 공포 컨셉 장기용품 쇼핑몰 입니다.
 
-This project is a starting point for a Flutter application.
+#### 💡 '장기밀매'는 다음과 같은 분들을 위해 탄생되었습니다.
 
-A few resources to get you started if this is your first Flutter project:
+> ♟️ 평소에 장기 두기를 좋아하고 장기에 대해 관심이 많으신 분들
+> 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+> ✨ 비슷한 디자인의 장기용품에 지루함을 느끼고, 새로운 디자인을 찾고 계시는 분들 
+> 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+> 🛍️ 합리적인 가격에 다양한 장기용품을 사고 팔고 싶으신 분들
+> 
+
+<br/>
+
+## 팀원 구성
+
+| **이경범** | **안혜린** | **권태윤** | **박한결** |
+| :------: |  :------: | :------: | :------: |
+
+### 프로젝트 일정
+25/10/24~25/10/30
+
+### 레퍼런스
+- Google 공식 문서: Flutter, Dart
+- Figma (Wireframe 제작)
+- Miri Canvas
+
+### 프로젝트 핵심 기술
+- Flutter 기반 멀티 플랫폼 지원(Android, iOS)
+- Dart 언어 활용
+- MVVM
+- intl: ^0.20.2
+- webp
+- fl_chart: ^1.1.1
+
+
+
+### 앱 디자인 설계
+<p align="center">
+<img alt="앱 디자인/목업 이미지" src="">
+</p>
+
+
+  
+### 역할 분담
+**이경범** : 팀장👑, 홈 페이지(상품 리스트 + 빈 리스트 페이지)
+
+**안혜린** : 상품 등록 페이지, 스플레시 페이지, ReadMe
+
+**권태윤** : 장바구니 페이지, 상품 수정 페이지, 와이어 프레임 및 앱 디자인
+
+**박한결** : 상품 상세 페이지, 와이어 프레임 및 앱 디자인
+
+
+<br/>
+
+## 주요 기능
+
+| [홈 페이지] | [상품 등록 페이지] | [상품 상세 페이지] | [상품 수정 페이지] | [장바구니 페이지] |
+| --- | --- | --- | --- | --- |
+| - 현재 등록되어 있는 상품 목록 보기<br>- 상품 목록을 눌러 상품 상세정보 보기<br>- 상품 목록을 길게 눌러 상품 수정하기<br>- 상품 추가하기<br>- 장바구니 보기| - 등록할 상품의 사진 넣기<br>- 등록할 상품의 이름 입력<br>- 등록할 상품의 가격 입력<br>- 등록할 상품의 상세정보 입력| - 선택한 상품의 상세정보 보기<br>- 장바구니에 담을 수량 선택<br>- 선택한 상품 장바구니에 담기| - 선택한 상품의 정보(사진, 이름, 가격, 상세정보) 수정 | - 장바구니에 담은 상품 목록 보기<br>- 장바구니에 담은 상품의 수량 보기<br>- 장바구니에 담은 상품 삭제 |
+
+<br/>
+
+## TroubleShooting
+
+#### 트러블1
+- 필요성: 
+- 해결책: 
+- 개선점: 
+
+#### 트러블2
+- 필요성: 
+- 해결책: 
+- 개선점: 
+
+#### 트러블3
+- 필요성: 
+- 해결책: 
+- 개선점: 
+
+
+<br/>
+
+## 유지보수 및 개선사항
+
+### YYYY/MM/DD: 이슈1
+이슈 내용
+- 문제 기기: 
+- 이슈 상황: 
+- 향후 계획: 
+
+
+### YYYY/MM/DD: 이슈2
+이슈 내용
+- 문제 기기: 
+- 이슈 상황: 
+- 향후 계획: 

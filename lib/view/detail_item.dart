@@ -1,233 +1,169 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-
-// 상품 상세 화면
-// 홈에서 상품을 클릭하면 디테일 화면으로 이동
-class ProductDetailPage extends StatefulWidget {
-  const ProductDetailPage({super.key, required this.item});
-  final ItemModel item;
-
+import 'package:flutter_market_sajo/view/title_image.dart';
+class DetailItem extends StatefulWidget {
+  const DetailItem({super.key, required this.itemModel});
+  final ItemModel itemModel;
   @override
-  State<ProductDetailPage> createState() => _ProductDetailPageState();
+  State<DetailItem> createState() => _DetailItemState();
 }
-
-class _ProductDetailPageState extends State<ProductDetailPage> {
-  late int qty;
-
-// 처음 수량은 1로 설정되어 있음
-  @override
-  void initState() {
-    super.initState();
-    qty = widget.item.productCount ?? 1;
-  }
-// 정수 가격을 콤마 붙인 문자열로 변환
-  String _formatWon(int value) {
-    final s = value.toString();
-    final buf = StringBuffer();
-    for (int i = 0; i < s.length; i++) {
-      int idxFromLeft = i;
-      int remain = (s.length - idxFromLeft) % 3;
-      buf.write(s[i]);
-      final posFromRight = s.length - i - 1;
-      if (posFromRight % 3 == 0 && i != s.length - 1) buf.write(',');
+class _DetailItemState extends State<DetailItem> {
+  int number = 1;
+  String formatPrice(int value) {
+    String price = value.toString();
+    String result = '';
+    int count = 0;
+    for (int i = price.length - 1; i >= 0; i--) {
+      result = price[i] + result;
+      count++;
+      if (count == 3 && i != 0) {
+        result = ',' + result;
+        count = 0;
+      }
     }
-    return '$buf원';
+    return result;
   }
-
   @override
   Widget build(BuildContext context) {
-    final item = widget.item;
-
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Image.asset(
-          "assets/images/logo.webp",
-          height: 40,
-          fit: BoxFit.contain,
-        ),
-        centerTitle: true,
         backgroundColor: const Color(0xFF242424),
+        title: TitleImage(),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            // 대표 이미지
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFF2F6BFF), width: 3),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: item.image, // ItemModel이 Image를 보관하므로 그대로 사용
-              ),
-            ),
-            const SizedBox(height: 16),
-            // 제목과 가격
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    item.productName,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: AspectRatio(
+                    aspectRatio: 3 / 2,
+                    child: Image(
+                      image: widget.itemModel.image.image,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.center,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                const SizedBox(width: 12),
-                Text(
-                  _formatWon(item.price),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            const Divider(thickness: 1),
-            const SizedBox(height: 12),
-
-            // 빈 정보 박스(예시와 동일한 레이아웃 유지용)
-            Container(
-              height: 140,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.white24),
               ),
-            ),
-            const SizedBox(height: 16),
-
-            // 설명 라벨
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                '상품 내용',
-                style: TextStyle(fontSize: 15, color: Colors.white70),
+              const SizedBox(height: 16),
+              Text(
+                '상품명 : ${widget.itemModel.productName}',
+                style: const TextStyle(fontSize: 15),
               ),
-            ),
-            const SizedBox(height: 8),
-
-            // 설명 박스
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(12),
+              const SizedBox(height: 16),
+              Text(
+                '상품 가격 : ${formatPrice(widget.itemModel.price)}원',
+                style: const TextStyle(fontSize: 15),
               ),
-              child: Text(
-                item.description,
-                style: const TextStyle(fontSize: 15, color: Colors.white70),
+              const SizedBox(height: 16),
+              const Text("상품 설명"),
+              Text(
+                widget.itemModel.description,
+                style: const TextStyle(fontSize: 15),
               ),
-            ),
-            const SizedBox(height: 80), // 하단바와 간격
-          ],
+            ],
+          ),
         ),
       ),
-
-      // 하단 조작 바
       bottomNavigationBar: SafeArea(
         top: false,
         child: Container(
-          height: 72,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          height: 70,
           color: const Color(0xFF242424),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              // 수량 조절
-              Container(
-                height: 44,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: const Color(0xFFB44336),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (number > 1) number--;
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  minimumSize: const Size(40, 40),
                 ),
-                child: Row(
+                child: const Text('-', style: TextStyle(color: Colors.black)),
+              ),
+              const SizedBox(width: 8),
+              Container(
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                color: Colors.white,
+                child: Text(
+                  '$number',
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
+                ),
+              ),
+              const SizedBox(width: 8),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (number < 99) number++;
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  minimumSize: const Size(40, 40),
+                ),
+                child: const Text('+', style: TextStyle(color: Colors.black)),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        setState(() => qty = qty > 1 ? qty - 1 : 1);
-                      },
-                      icon: const Icon(Icons.remove),
-                      constraints: const BoxConstraints(minWidth: 36),
-                      padding: EdgeInsets.zero,
-                    ),
-                    SizedBox(
-                      width: 36,
-                      child: Center(
-                        child: Text(
-                          '$qty',
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() => qty += 1);
-                      },
-                      icon: const Icon(Icons.add),
-                      constraints: const BoxConstraints(minWidth: 36),
-                      padding: EdgeInsets.zero,
+                    const Text('총 가격', style: TextStyle(color: Colors.white70)),
+                    Text(
+                      '${formatPrice(widget.itemModel.price * number)} 원',
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 16),
-
-              // 장바구니
-              SizedBox(
-                height: 44,
-                width: 56,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    elevation: 0,
-                  ),
-                  onPressed: () {
-                    item.productCount = qty;
-                    item.cart = true;
-                    Fluttertoast.showToast(msg: '장바구니에 담았습니다');
-                    // 장바구니 페이지가 없으므로 현재는 토스트만
-                  },
-                  child: const Icon(Icons.shopping_bag_outlined),
-                ),
-              ),
-              const SizedBox(width: 16),
-
-              // 구매하기
-              Expanded(
-                child: SizedBox(
-                  height: 44,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFB44336),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: const Text('장바구니에 담겼습니다.'),
+                      content: Text(
+                        '총 ${formatPrice(widget.itemModel.price * number)}원을 장바구니에 담으시겠습니까?',
                       ),
-                      elevation: 0,
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('더 구경하기'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('장바구니 보기'),
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      item.productCount = qty;
-                      Fluttertoast.showToast(msg: '구매하기 진행');
-                    },
-                    child: const Text(
-                      '구매하기',
-                      style: TextStyle(fontWeight: FontWeight.w700),
-                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFA70E0E),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
                   ),
+                ),
+                child: const Text(
+                  '장바구니',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
             ],
