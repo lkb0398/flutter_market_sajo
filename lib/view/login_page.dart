@@ -96,7 +96,6 @@ Widget LoginBox(String text, String hint, TextEditingController controller) {
         child: TextField(
           controller: controller,
           maxLines: 1,
-          cursorColor: Color(0xFFA70E0E),
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(color: Color.fromARGB(255, 164, 164, 164)),
