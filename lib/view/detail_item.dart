@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 
 class DetailItem extends StatefulWidget {
-  const DetailItem({super.key, required this.itemModel});
+  const DetailItem({super.key, required this.itemModel, required this.cartList});
   final ItemModel itemModel;
+  final List<ItemModel> cartList;
+
   @override
   State<DetailItem> createState() => _DetailItemState();
 }
@@ -70,6 +72,7 @@ class _DetailItemState extends State<DetailItem> {
           ),
         ),
       ),
+      
     );
   }
 }
