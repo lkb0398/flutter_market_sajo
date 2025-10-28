@@ -113,7 +113,7 @@ class _AddItemState extends State<AddItem> {
           ),
         ),
       ),
-      // 수정하기 버튼
+      // 등록하기 버튼
       bottomNavigationBar: GestureDetector(
         onTap: () {
           // 예외 처리
