@@ -84,7 +84,7 @@ class _AddItemState extends State<AddItem> {
           ),
         ),
       ),
-      bottomNavigationBar: Registeration(
+      bottomNavigationBar: Registration(
         context,
         image,
         nameController,
@@ -181,7 +181,7 @@ Widget Description(context, descriptionController) {
   );
 }
 
-Widget Registeration(
+Widget Registration(
   BuildContext context,
   File? image,
   TextEditingController nameController,
