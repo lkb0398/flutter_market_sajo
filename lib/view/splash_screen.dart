@@ -9,9 +9,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // 일정 시간 후
     Future.delayed(Duration(seconds: 2), () {
-      // 일정 시간 후
-      Navigator.pushReplacementNamed(context, '/login'); // 홈 화면으로 이동
+      // 홈 화면으로 이동
+      Navigator.pushReplacementNamed(context, '/login');
     });
   }
 
