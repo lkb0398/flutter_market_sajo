@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/view/text_input_box.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -47,7 +48,6 @@ class _AddItemState extends State<AddItem> {
         });
   }
 
-  // 페이지 구조
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,159 +76,95 @@ class _AddItemState extends State<AddItem> {
                   ),
                 ),
               ),
-              Name(context, nameController),
-              Price(context, priceController),
+              Row(
+                spacing: 20,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('상품 이름', style: TextStyle(fontSize: 15)),
+                  Expanded(
+                    child: TextInputBox(
+                      maxLines: 1,
+                      controller: nameController,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                spacing: 20,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('상품 가격', style: TextStyle(fontSize: 15)),
+                  Expanded(
+                    child: TextInputBox(
+                      maxLines: 1,
+                      controller: priceController,
+                    ),
+                  ),
+                  Text('원', style: TextStyle(fontSize: 15)),
+                ],
+              ),
               Text('상품 설명', style: TextStyle(fontSize: 15)),
-              Description(context, descriptionController),
+              TextInputBox(maxLines: 7, controller: descriptionController),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: Registration(
-        context,
-        image,
-        nameController,
-        priceController,
-        descriptionController,
-        widget.list,
-        widget.onEmptyChanged,
+      bottomNavigationBar: GestureDetector(
+        onTap: () {
+          // 예외 처리
+          if (nameController.text.isEmpty) {
+            Fluttertoast.showToast(
+              msg: "상품 이름을 입력하세요",
+              gravity: ToastGravity.CENTER,
+            );
+          } else if (priceController.text.isEmpty) {
+            Fluttertoast.showToast(
+              msg: "상품 가격을 입력하세요",
+              gravity: ToastGravity.CENTER,
+            );
+          } else if (int.tryParse(priceController.text) == null) {
+            Fluttertoast.showToast(
+              msg: "상품 가격은 숫자로 입력해야 합니다",
+              gravity: ToastGravity.CENTER,
+            );
+          } else if (descriptionController.text.isEmpty) {
+            Fluttertoast.showToast(
+              msg: "상품 설명을 입력하세요",
+              gravity: ToastGravity.CENTER,
+            );
+          } else {
+            // 정상 입력 시
+            widget.list.add(
+              ItemModel(
+                productName: nameController.text,
+                price: int.parse(priceController.text),
+                image: Image.file(
+                  image!,
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+                description: descriptionController.text,
+              ),
+            );
+            Fluttertoast.showToast(
+              msg: "등록되었습니다",
+              gravity: ToastGravity.CENTER,
+            );
+            Navigator.pop(context);
+            widget.onEmptyChanged();
+          }
+        },
+        child: Container(
+          height: 70,
+          width: double.infinity,
+          color: Color(0xFF242424),
+          child: Image.asset(
+            'assets/images/registration.webp',
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
     );
   }
-}
-
-// 위젯
-
-Widget Name(context, nameController) {
-  return Row(
-    spacing: 20,
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text('상품 이름', style: TextStyle(fontSize: 15)),
-      Expanded(
-        child: Container(
-          padding: EdgeInsets.only(left: 10, right: 10, bottom: 6),
-          height: 30,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: TextField(
-            controller: nameController,
-            maxLines: 1,
-            decoration: InputDecoration(border: InputBorder.none),
-          ),
-        ),
-      ),
-    ],
-  );
-}
-
-Widget Price(context, priceController) {
-  return Row(
-    spacing: 20,
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text('상품 가격', style: TextStyle(fontSize: 15)),
-      Expanded(
-        child: Container(
-          padding: EdgeInsets.only(left: 10, right: 10, bottom: 6),
-          height: 30,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: TextField(
-            controller: priceController,
-            maxLines: 1,
-            decoration: InputDecoration(border: InputBorder.none),
-          ),
-        ),
-      ),
-      Text('원', style: TextStyle(fontSize: 15)),
-    ],
-  );
-}
-
-Widget Description(context, descriptionController) {
-  return Container(
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.white),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: TextField(
-        controller: descriptionController,
-        maxLines: 7,
-        textInputAction: TextInputAction.newline,
-        decoration: InputDecoration(border: InputBorder.none),
-        onTapOutside: (event) => FocusScope.of(context).unfocus(),
-      ),
-    ),
-  );
-}
-
-Widget Registration(
-  BuildContext context,
-  File? image,
-  TextEditingController nameController,
-  TextEditingController priceController,
-  TextEditingController descriptionController,
-  List<ItemModel> list,
-  Function onEmptyChanged,
-) {
-  return GestureDetector(
-    onTap: () {
-      // 예외 처리
-      if (nameController.text.isEmpty) {
-        Fluttertoast.showToast(
-          msg: "상품 이름을 입력하세요",
-          gravity: ToastGravity.CENTER,
-        );
-      } else if (priceController.text.isEmpty) {
-        Fluttertoast.showToast(
-          msg: "상품 가격을 입력하세요",
-          gravity: ToastGravity.CENTER,
-        );
-      } else if (int.tryParse(priceController.text) == null) {
-        Fluttertoast.showToast(
-          msg: "상품 가격은 숫자로 입력해야 합니다",
-          gravity: ToastGravity.CENTER,
-        );
-      } else if (descriptionController.text.isEmpty) {
-        Fluttertoast.showToast(
-          msg: "상품 설명을 입력하세요",
-          gravity: ToastGravity.CENTER,
-        );
-      } else {
-        // 정상 입력 시
-        list.add(
-          ItemModel(
-            productName: nameController.text,
-            price: int.parse(priceController.text),
-            image: Image.file(
-              image!,
-              height: 100,
-              width: 100,
-              fit: BoxFit.cover,
-            ),
-            description: descriptionController.text,
-          ),
-        );
-        Fluttertoast.showToast(msg: "등록되었습니다", gravity: ToastGravity.CENTER);
-        Navigator.pop(context);
-        onEmptyChanged();
-      }
-    },
-    child: Container(
-      height: 70,
-      width: double.infinity,
-      color: Color(0xFF242424),
-      child: Image.asset(
-        'assets/images/registration.webp',
-        fit: BoxFit.contain,
-      ),
-    ),
-  );
 }
