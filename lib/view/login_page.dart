@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_market_sajo/model/login_model.dart';
+import 'package:flutter_market_sajo/model/login_info.dart';
 import 'package:flutter_market_sajo/view/home_page.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -19,49 +19,11 @@ class LoginPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10,
           children: [
-            Text("아이디"),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              height: 30,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TextField(
-                controller: idController,
-                maxLines: 1,
-                decoration: InputDecoration(
-                  hintText: "admin",
-                  hintStyle: TextStyle(
-                    color: Color.fromARGB(255, 164, 164, 164),
-                  ),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-            Text("비밀번호"),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              height: 30,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TextField(
-                controller: pwController,
-                maxLines: 1,
-                decoration: InputDecoration(
-                  hintText: "admin1004",
-                  hintStyle: TextStyle(
-                    color: Color.fromARGB(255, 164, 164, 164),
-                  ),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
+            LoginBox("아이디", "admin", idController),
+            SizedBox(height: 20),
+            LoginBox("비밀번호", "sajo1004", pwController),
+            SizedBox(height: 50),
             GestureDetector(
               onTap: () {
                 // 예외 처리
@@ -80,7 +42,7 @@ class LoginPage extends StatelessWidget {
                     msg: "비밀번호를 입력하세요",
                     gravity: ToastGravity.CENTER,
                   );
-                } else if (pwController.text != LoginModel().id) {
+                } else if (pwController.text != LoginModel().pw) {
                   Fluttertoast.showToast(
                     msg: "잘못된 비밀번호입니다",
                     gravity: ToastGravity.CENTER,
@@ -114,4 +76,33 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+}
+
+// 위젯
+
+Widget LoginBox(String text, String hint, TextEditingController controller) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: 10,
+    children: [
+      Text(text),
+      Container(
+        padding: EdgeInsets.only(left: 10, right: 10, bottom: 4),
+        height: 40,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.white),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: TextField(
+          controller: controller,
+          maxLines: 1,
+          decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: TextStyle(color: Color.fromARGB(255, 164, 164, 164)),
+            border: InputBorder.none,
+          ),
+        ),
+      ),
+    ],
+  );
 }
