@@ -13,9 +13,12 @@ class NoItemList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text("등록된 상품이 없습니다.")],
+        children: [
+          Image.asset("assets/images/surgery.webp", height: 200),
+          SizedBox(height: 20),
+          Text("등록된 상품이 없습니다.", style: TextStyle(fontSize: 22)),
+        ],
       ),
     );
   }
 }
-

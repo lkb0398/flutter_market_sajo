@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:flutter_market_sajo/view/detail_item.dart';
@@ -49,23 +50,27 @@ class _ItemListState extends State<ItemList> {
                   borderRadius: BorderRadius.circular(12),
                   child: widget.list[index].image,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  spacing: 10,
-                  children: [
-                    Text(
-                      widget.list[index].productName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    spacing: 10,
+                    children: [
+                      AutoSizeText(
+                        maxLines: 1,
+                        widget.list[index].productName,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                        ),
                       ),
-                    ),
 
-                    Text(
-                      "${NumberFormat("#,###").format(widget.list[index].price)}원",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ],
+                      AutoSizeText(
+                        maxLines: 1,
+                        "${NumberFormat("#,###").format(widget.list[index].price)}원",
+                        style: TextStyle(fontSize: 25, color: Colors.red),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
