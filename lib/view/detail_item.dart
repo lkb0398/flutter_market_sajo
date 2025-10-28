@@ -43,13 +43,13 @@ class _DetailItemState extends State<DetailItem> {
               ),
               const SizedBox(height: 16),
               Text(
-                '상품명 : ${widget.list[widget.index].productName}',
-                style: const TextStyle(fontSize: 15),
+                widget.list[widget.index].productName,
+                style: const TextStyle(fontSize: 35),
               ),
               const SizedBox(height: 16),
               Text(
-                '상품 가격 : ${NumberFormat("#,###").format(widget.list[widget.index].price)}원',
-                style: const TextStyle(fontSize: 15),
+                '${NumberFormat("#,###").format(widget.list[widget.index].price)}원',
+                style: const TextStyle(fontSize: 30, color: Colors.deepOrange),
               ),
               const SizedBox(height: 16),
               const Text("상품 설명"),
