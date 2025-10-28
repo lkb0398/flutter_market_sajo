@@ -17,6 +17,7 @@ class _ModifyItemState extends State<ModifyItem> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   File? image;
+  
   @override
   void initState() {
     super.initState();
