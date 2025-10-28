@@ -99,17 +99,17 @@ class _AddItemState extends State<AddItem> {
 
 // 위젯
 
-Widget Board(select, onSelectChanged, String board) {
-  return GestureDetector(
-    onTap: () => onSelectChanged(board),
-    child: Container(
-      decoration: select == board
-          ? BoxDecoration(border: Border.all(color: Colors.red, width: 5))
-          : null,
-      child: Image.asset('assets/images/$board.webp', fit: BoxFit.cover),
-    ),
-  );
-}
+// Widget Board(select, onSelectChanged, String board) {
+//   return GestureDetector(
+//     onTap: () => onSelectChanged(board),
+//     child: Container(
+//       decoration: select == board
+//           ? BoxDecoration(border: Border.all(color: Colors.red, width: 5))
+//           : null,
+//       child: Image.asset('assets/images/$board.webp', fit: BoxFit.cover),
+//     ),
+//   );
+// }
 
 Widget Name(context, nameController) {
   return Row(
