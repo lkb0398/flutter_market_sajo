@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/view/detail_item.dart';
 import 'package:flutter_market_sajo/view/modify_item.dart';
 import 'package:intl/intl.dart';
 
@@ -18,6 +19,14 @@ class _ItemListState extends State<ItemList> {
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
         return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailItem(itemModel: widget.list[index]),
+              ),
+            );
+          },
           onLongPress: () async {
             final updatedItem = await Navigator.push(
               context,
