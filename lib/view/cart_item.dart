@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:flutter_market_sajo/view/detail_item.dart';
@@ -39,18 +40,18 @@ class _CartItemState extends State<CartItem> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   spacing: 10,
                   children: [
-                    Text(
+                    AutoSizeText(
                       widget.list[index].productName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       "${NumberFormat("#,###").format(widget.list[index].price * widget.list[index].productCount)}원",
                       style: TextStyle(fontSize: 15),
                     ),
-                    Text(
+                    AutoSizeText(
                       "${NumberFormat("#,###").format(widget.list[index].productCount)}개",
                       style: TextStyle(fontSize: 15),
                     ),

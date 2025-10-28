@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 import 'package:flutter_market_sajo/view/cart.dart';
@@ -42,18 +43,18 @@ class _DetailItemState extends State<DetailItem> {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
+              AutoSizeText(
                 '상품명 : ${widget.list[widget.index].productName}',
                 style: const TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 16),
-              Text(
+              AutoSizeText(
                 '상품 가격 : ${NumberFormat("#,###").format(widget.list[widget.index].price)}원',
                 style: const TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 16),
               const Text("상품 설명"),
-              Text(
+              AutoSizeText(
                 widget.list[widget.index].description,
                 style: const TextStyle(fontSize: 15),
               ),
@@ -112,7 +113,7 @@ class _DetailItemState extends State<DetailItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text('총 가격', style: TextStyle(color: Colors.white70)),
-                    Text(
+                    AutoSizeText(
                       '${NumberFormat("#,###").format(widget.list[widget.index].price * number)} 원',
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
@@ -125,7 +126,7 @@ class _DetailItemState extends State<DetailItem> {
                     context: context,
                     builder: (context) => AlertDialog(
                       title: const Text('장바구니에 담겼습니다.'),
-                      content: Text(
+                      content: AutoSizeText(
                         '총 ${NumberFormat("#,###").format(widget.list[widget.index].price * number)}원을 장바구니에 담으시겠습니까?',
                       ),
                       actions: [
