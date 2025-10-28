@@ -1,19 +1,19 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/view/cart.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:intl/intl.dart';
 
 class DetailItem extends StatefulWidget {
-  const DetailItem({super.key, required this.itemModel});
-  final ItemModel itemModel;
+  const DetailItem({super.key, required this.list, required this.index});
+  final List<ItemModel> list;
+  final int index;
   @override
   State<DetailItem> createState() => _DetailItemState();
 }
 
 class _DetailItemState extends State<DetailItem> {
   int number = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class _DetailItemState extends State<DetailItem> {
                   child: AspectRatio(
                     aspectRatio: 3 / 2,
                     child: Image(
-                      image: widget.itemModel.image.image,
+                      image: widget.list[widget.index].image.image,
                       fit: BoxFit.cover,
                       alignment: Alignment.center,
                     ),
@@ -43,22 +43,19 @@ class _DetailItemState extends State<DetailItem> {
               ),
               const SizedBox(height: 16),
               Text(
-                '상품명: ${widget.itemModel.productName}',
-                style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
+                '상품명 : ${widget.list[widget.index].productName}',
+                style: const TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 16),
               Text(
-                '상품 가격: ${NumberFormat("#,###").format(widget.itemModel.price)}원',
-                style: const TextStyle(fontSize: 20),
+                '상품 가격 : ${NumberFormat("#,###").format(widget.list[widget.index].price)}원',
+                style: const TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 16),
-              const Text("상품 설명", style: TextStyle(fontSize: 20)),
+              const Text("상품 설명"),
               Text(
-                widget.itemModel.description,
-                style: const TextStyle(fontSize: 20),
+                widget.list[widget.index].description,
+                style: const TextStyle(fontSize: 15),
               ),
             ],
           ),
@@ -79,16 +76,17 @@ class _DetailItemState extends State<DetailItem> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFA70E0E),
+                  backgroundColor: Colors.white,
+                  minimumSize: const Size(40, 40),
                 ),
-                child: const Icon(Icons.remove, size: 20),
+                child: const Text('-', style: TextStyle(color: Colors.black)),
               ),
               const SizedBox(width: 8),
               Container(
                 width: 40,
                 height: 40,
                 alignment: Alignment.center,
-                color: Color(0xFFA70E0E),
+                color: Colors.white,
                 child: Text(
                   '$number',
                   style: const TextStyle(fontSize: 16, color: Colors.black),
@@ -102,10 +100,10 @@ class _DetailItemState extends State<DetailItem> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFA70E0E),
+                  backgroundColor: Colors.white,
                   minimumSize: const Size(40, 40),
                 ),
-                child: const Icon(Icons.add, size: 20),
+                child: const Text('+', style: TextStyle(color: Colors.black)),
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -113,12 +111,9 @@ class _DetailItemState extends State<DetailItem> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AutoSizeText(
-                      '총 가격',
-                      style: TextStyle(color: Colors.white70),
-                    ),
+                    const Text('총 가격', style: TextStyle(color: Colors.white70)),
                     Text(
-                      '${NumberFormat("#,###").format(widget.itemModel.price * number)} 원',
+                      '${NumberFormat("#,###").format(widget.list[widget.index].price * number)} 원',
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
@@ -128,20 +123,33 @@ class _DetailItemState extends State<DetailItem> {
                 onPressed: () {
                   showDialog(
                     context: context,
-                    builder: (_) => AlertDialog(
+                    builder: (context) => AlertDialog(
                       title: const Text('장바구니에 담겼습니다.'),
                       content: Text(
-                        '총 ${NumberFormat("#,###").format(widget.itemModel.price * number)}원을 장바구니에 담으시겠습니까?',
+                        '총 ${NumberFormat("#,###").format(widget.list[widget.index].price * number)}원을 장바구니에 담으시겠습니까?',
                       ),
                       actions: [
                         TextButton(
                           onPressed: () {
+                            widget.list[widget.index].productCount = number;
+                            widget.list[widget.index].cart = true;
+                            Navigator.pop(context);
                             Navigator.pop(context);
                           },
                           child: const Text('더 구경하기'),
                         ),
                         TextButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            widget.list[widget.index].productCount = number;
+                            widget.list[widget.index].cart = true;
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Cart(
+                                  list: widget.list,
+                                ), // :흰색_확인_표시: 기존 리스트 그대로 전달
+                              ),
+                            );
                             Navigator.pop(context);
                           },
                           child: const Text('장바구니 보기'),
