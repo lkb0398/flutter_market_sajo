@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/view/text_input_box.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,7 +18,7 @@ class _ModifyItemState extends State<ModifyItem> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   File? image;
-  
+
   @override
   void initState() {
     super.initState();
@@ -108,24 +109,9 @@ class _ModifyItemState extends State<ModifyItem> {
                 children: [
                   const Text('상품 이름', style: TextStyle(fontSize: 15)),
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        left: 5,
-                        right: 5,
-                        bottom: 5,
-                      ),
-                      height: 30,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextField(
-                        controller: nameController,
-                        maxLines: 1,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                      ),
+                    child: TextInputBox(
+                      maxLines: 1,
+                      controller: nameController,
                     ),
                   ),
                 ],
@@ -137,24 +123,9 @@ class _ModifyItemState extends State<ModifyItem> {
                 children: [
                   const Text('상품 가격', style: TextStyle(fontSize: 15)),
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        left: 5,
-                        right: 5,
-                        bottom: 5,
-                      ),
-                      height: 30,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextField(
-                        controller: priceController,
-                        maxLines: 1,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                      ),
+                    child: TextInputBox(
+                      maxLines: 1,
+                      controller: priceController,
                     ),
                   ),
                   const Text('원', style: TextStyle(fontSize: 15)),
@@ -162,36 +133,19 @@ class _ModifyItemState extends State<ModifyItem> {
               ),
               // 상품 설명 입력
               const Text('상품 설명', style: TextStyle(fontSize: 15)),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextField(
-                    controller: descriptionController,
-                    maxLines: 7,
-                    textInputAction: TextInputAction.newline,
-                    decoration: const InputDecoration(border: InputBorder.none),
-                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
-                  ),
-                ),
-              ),
+              TextInputBox(maxLines: 7, controller: descriptionController),
             ],
           ),
         ),
       ),
+      // 수정하기 버튼
       bottomNavigationBar: GestureDetector(
         onTap: updateItem,
         child: Container(
           height: 70,
           width: double.infinity,
           color: const Color(0xFF242424),
-          child: Image.asset(
-            'assets/images/registration.webp',
-            fit: BoxFit.contain,
-          ),
+          child: Image.asset('assets/images/modify.webp', fit: BoxFit.contain),
         ),
       ),
     );
