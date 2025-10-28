@@ -1,1 +1,46 @@
-{"info":"This is a generated file; do not edit or check into version control.","plugins":{"ios":[{"name":"fluttertoast","path":"/Users/kb/.pub-cache/hosted/pub.dev/fluttertoast-9.0.0/","native_build":true,"dependencies":[],"dev_dependency":false}],"android":[{"name":"fluttertoast","path":"/Users/kb/.pub-cache/hosted/pub.dev/fluttertoast-9.0.0/","native_build":true,"dependencies":[],"dev_dependency":false}],"macos":[],"linux":[],"windows":[],"web":[{"name":"fluttertoast","path":"/Users/kb/.pub-cache/hosted/pub.dev/fluttertoast-9.0.0/","dependencies":[],"dev_dependency":false}]},"dependencyGraph":[{"name":"fluttertoast","dependencies":[]}],"date_created":"2025-10-28 11:25:18.897892","version":"3.35.7","swift_package_manager_enabled":{"ios":false,"macos":false}}
+{
+    "info": "This is a generated file; do not edit or check into version control.",
+    "plugins": {
+        "ios": [
+            {
+                "name": "fluttertoast",
+                "path": "/Users/kb/.pub-cache/hosted/pub.dev/fluttertoast-9.0.0/",
+                "native_build": true,
+                "dependencies": [],
+                "dev_dependency": false
+            }
+        ],
+        "android": [
+            {
+                "name": "fluttertoast",
+                "path": "/Users/kb/.pub-cache/hosted/pub.dev/fluttertoast-9.0.0/",
+                "native_build": true,
+                "dependencies": [],
+                "dev_dependency": false
+            }
+        ],
+        "macos": [],
+        "linux": [],
+        "windows": [],
+        "web": [
+            {
+                "name": "fluttertoast",
+                "path": "/Users/kb/.pub-cache/hosted/pub.dev/fluttertoast-9.0.0/",
+                "dependencies": [],
+                "dev_dependency": false
+            }
+        ]
+    },
+    "dependencyGraph": [
+        {
+            "name": "fluttertoast",
+            "dependencies": []
+        }
+    ],
+    "date_created": "2025-10-28 11:25:18.897892",
+    "version": "3.35.7",
+    "swift_package_manager_enabled": {
+        "ios": false,
+        "macos": false
+    }
+}
