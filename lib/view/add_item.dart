@@ -60,6 +60,7 @@ class _AddItemState extends State<AddItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
+              // 이미지 선택 영역
               GestureDetector(
                 onTap: selectImage,
                 child: ClipRRect(
@@ -76,6 +77,7 @@ class _AddItemState extends State<AddItem> {
                   ),
                 ),
               ),
+              // 상품 이름 입력
               Row(
                 spacing: 20,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,6 +91,7 @@ class _AddItemState extends State<AddItem> {
                   ),
                 ],
               ),
+              // 상품 가격 입력
               Row(
                 spacing: 20,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,12 +106,14 @@ class _AddItemState extends State<AddItem> {
                   Text('원', style: TextStyle(fontSize: 15)),
                 ],
               ),
+              // 상품 설명 입력
               Text('상품 설명', style: TextStyle(fontSize: 15)),
               TextInputBox(maxLines: 7, controller: descriptionController),
             ],
           ),
         ),
       ),
+      // 수정하기 버튼
       bottomNavigationBar: GestureDetector(
         onTap: () {
           // 예외 처리
