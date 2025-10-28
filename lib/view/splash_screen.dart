@@ -11,7 +11,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // 일정 시간 후
     Future.delayed(Duration(seconds: 2), () {
-      // 홈 화면으로 이동
+      // 로그인 화면으로 이동
       Navigator.pushReplacementNamed(context, '/login');
     });
   }

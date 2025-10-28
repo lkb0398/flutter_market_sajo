@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_market_sajo/model/login_model.dart';
+import 'package:flutter_market_sajo/model/login_info.dart';
 import 'package:flutter_market_sajo/view/home_page.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
           children: [
             LoginBox("아이디", "admin", idController),
             SizedBox(height: 20),
-            LoginBox("비밀번호", "admin1004", pwController),
+            LoginBox("비밀번호", "sajo1004", pwController),
             SizedBox(height: 50),
             GestureDetector(
               onTap: () {
