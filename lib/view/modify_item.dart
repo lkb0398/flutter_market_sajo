@@ -35,6 +35,7 @@ class _ModifyItemState extends State<ModifyItem> {
           Fluttertoast.showToast(msg: "이미지 선택 중 오류 발생: $err");
         });
   }
+
   // 페이지 구조
   @override
   Widget build(BuildContext context) {
@@ -75,17 +76,18 @@ class _ModifyItemState extends State<ModifyItem> {
           ),
         ),
       ),
-      bottomNavigationBar: Registeration(
+      bottomNavigationBar: Registration(
         context,
         image,
         nameController,
         priceController,
         descriptionController,
-        widget.itemModel
+        widget.itemModel,
       ),
     );
   }
 }
+
 // 위젯
 Widget Board(select, onSelectChanged, String board) {
   return GestureDetector(
@@ -98,6 +100,7 @@ Widget Board(select, onSelectChanged, String board) {
     ),
   );
 }
+
 Widget Name(context, nameController) {
   return Row(
     spacing: 20,
@@ -122,6 +125,7 @@ Widget Name(context, nameController) {
     ],
   );
 }
+
 Widget Price(context, priceController) {
   return Row(
     spacing: 20,
@@ -147,6 +151,7 @@ Widget Price(context, priceController) {
     ],
   );
 }
+
 Widget Description(context, descriptionController) {
   return Container(
     decoration: BoxDecoration(
@@ -165,29 +170,42 @@ Widget Description(context, descriptionController) {
     ),
   );
 }
-Widget Registeration(
+
+Widget Registration(
   BuildContext context,
   File? image,
   TextEditingController nameController,
   TextEditingController priceController,
   TextEditingController descriptionController,
-  ItemModel ItemModel,
+  ItemModel itemModel,
 ) {
   return GestureDetector(
     onTap: () {
       if (nameController.text.isEmpty) {
-        Fluttertoast.showToast(msg: "상품 이름을 입력하세요",gravity: ToastGravity.CENTER,);
+        Fluttertoast.showToast(
+          msg: "상품 이름을 입력하세요",
+          gravity: ToastGravity.CENTER,
+        );
       } else if (priceController.text.isEmpty) {
-        Fluttertoast.showToast(msg: "상품 가격을 입력하세요",gravity: ToastGravity.CENTER,);
+        Fluttertoast.showToast(
+          msg: "상품 가격을 입력하세요",
+          gravity: ToastGravity.CENTER,
+        );
       } else if (int.tryParse(priceController.text) == null) {
-        Fluttertoast.showToast(msg: "상품 가격은 숫자로 입력해야 합니다",gravity: ToastGravity.CENTER,);
+        Fluttertoast.showToast(
+          msg: "상품 가격은 숫자로 입력해야 합니다",
+          gravity: ToastGravity.CENTER,
+        );
       } else if (descriptionController.text.isEmpty) {
-        Fluttertoast.showToast(msg: "상품 설명을 입력하세요",gravity: ToastGravity.CENTER);
+        Fluttertoast.showToast(
+          msg: "상품 설명을 입력하세요",
+          gravity: ToastGravity.CENTER,
+        );
       } else {
-        ItemModel.productName = nameController.text;
-        ItemModel.price = int.parse(priceController.text);
-        ItemModel.image = Image.file(image!);
-        ItemModel.description = descriptionController.text;
+        itemModel.productName = nameController.text;
+        itemModel.price = int.parse(priceController.text);
+        itemModel.image = Image.file(image!);
+        itemModel.description = descriptionController.text;
 
         Fluttertoast.showToast(msg: "상품이 수정되었습니다");
         Navigator.pop(context);

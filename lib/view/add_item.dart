@@ -219,7 +219,12 @@ Widget Registeration(
           ItemModel(
             productName: nameController.text,
             price: int.parse(priceController.text),
-            image: Image.file(image!, height: 100),
+            image: Image.file(
+              image!,
+              height: 100,
+              width: 100,
+              fit: BoxFit.cover,
+            ),
             description: descriptionController.text,
           ),
         );
