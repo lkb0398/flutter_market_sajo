@@ -24,7 +24,8 @@ class _ItemListState extends State<ItemList> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DetailItem(itemModel: widget.list[index]),
+                builder: (context) =>
+                    DetailItem(list: widget.list, index: index),
               ),
             );
           },
