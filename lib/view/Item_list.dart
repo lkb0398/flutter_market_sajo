@@ -18,12 +18,19 @@ class _ItemListState extends State<ItemList> {
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onLongPress: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ModifyItem(itemModel: widget.list[index]),
-            ),
-          ),
+          onLongPress: () async {
+            final updatedItem = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ModifyItem(itemModel: widget.list[index]),
+              ),
+            );
+            if (updatedItem != null) {
+              setState(() {
+                widget.list[index] = updatedItem;
+              });
+            }
+          },
           child: Container(
             margin: EdgeInsets.all(10),
             child: Row(
