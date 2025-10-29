@@ -62,7 +62,9 @@ class _ItemListState extends State<ItemList> {
                     ),
 
                     Text(
-                      "${NumberFormat("#,###").format(widget.list[index].price)}원",
+                      widget.list[index].price == 0
+                          ? "무료"
+                          : "${NumberFormat("#,###").format(widget.list[index].price)} 원",
                       style: TextStyle(fontSize: 15),
                     ),
                   ],
