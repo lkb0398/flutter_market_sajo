@@ -5,6 +5,7 @@ import 'package:flutter_market_sajo/view/text_input_box.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+// 로그인 페이지
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
@@ -49,7 +50,7 @@ class LoginPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 50),
-            // 등록하기
+            // 로그인 버튼
             GestureDetector(
               onTap: () {
                 // 예외 처리

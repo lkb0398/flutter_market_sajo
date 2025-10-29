@@ -5,6 +5,7 @@ import 'package:flutter_market_sajo/view/detail_item.dart';
 import 'package:flutter_market_sajo/view/modify_item.dart';
 import 'package:intl/intl.dart';
 
+// 등록된 상품이 있을 때 화면
 class ItemList extends StatefulWidget {
   const ItemList({super.key, required this.list});
 
@@ -29,6 +30,7 @@ class _ItemListState extends State<ItemList> {
               ),
             );
           },
+          // 상품 탭 > 상품 상세 페이지로 이동
           onLongPress: () async {
             final updatedItem = await Navigator.push(
               context,
@@ -48,6 +50,7 @@ class _ItemListState extends State<ItemList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               spacing: 15,
               children: [
+                // 상품 이미지
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: widget.list[index].image,

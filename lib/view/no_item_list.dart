@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 등록된 상품이 없을 때 화면
 class NoItemList extends StatelessWidget {
   const NoItemList({super.key});
 

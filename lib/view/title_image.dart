@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 타이틀 이미지 위젯
 class TitleImage extends StatelessWidget {
   const TitleImage({super.key});
 

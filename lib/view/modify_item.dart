@@ -6,14 +6,18 @@ import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
+// 상품 수정 페이지
 class ModifyItem extends StatefulWidget {
   const ModifyItem({super.key, required this.itemModel});
+
   final ItemModel itemModel;
+
   @override
   State<ModifyItem> createState() => _ModifyItemState();
 }
 
 class _ModifyItemState extends State<ModifyItem> {
+  // 사용자 입력값 받기 (TextField)
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -28,6 +32,7 @@ class _ModifyItemState extends State<ModifyItem> {
     descriptionController.text = widget.itemModel.description;
   }
 
+  // 상품 가격 입력 범위 설정
   int numberSizeCheck(int number) {
     if (number > 1000000000) {
       return -1;
@@ -94,7 +99,7 @@ class _ModifyItemState extends State<ModifyItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
-              // 이미지 선택 영역
+              // 상품 이미지 선택 영역
               GestureDetector(
                 onTap: selectImage,
                 child: ClipRRect(

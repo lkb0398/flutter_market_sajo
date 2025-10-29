@@ -5,15 +5,17 @@ import 'package:flutter_market_sajo/view/cart.dart';
 import 'package:flutter_market_sajo/view/item_list.dart';
 import 'package:flutter_market_sajo/view/no_item_list.dart';
 
+// 홈 페이지
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   List<ItemModel> list = [];
-  void onEmptyChanged() => setState(() {});
+  void onChanged() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class _HomePageState extends State<HomePage> {
         leading: SizedBox(),
         title: Image.asset("assets/images/logo.webp", height: 200),
         actions: [
+          // 장바구니 버튼
           IconButton(
             onPressed: () => Navigator.push(
               context,
@@ -31,7 +34,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: (list.isEmpty ? NoItemList() : ItemList(list: list)),
+      body: (list.isEmpty
+          ? NoItemList() // 등록된 상품이 없을 때 화면
+          : ItemList(list: list)), // 등록된 상품이 있을 때 화면
+      // 상품 추가 버튼
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFA70E0E),
         shape: CircleBorder(),
@@ -41,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return AddItem(list: list, onEmptyChanged: onEmptyChanged);
+                return AddItem(list: list, onChanged: onChanged);
               },
             ),
           );

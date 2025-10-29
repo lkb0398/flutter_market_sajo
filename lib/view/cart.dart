@@ -6,9 +6,12 @@ import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
+// 장바구니 페이지
 class Cart extends StatefulWidget {
   const Cart({super.key, required this.list});
+
   final List<ItemModel> list;
+
   @override
   State<Cart> createState() => _CartState();
 }
@@ -16,13 +19,14 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
-    // cart == true 인 상품만 화면에 표시
+    // bool cart == true 인 상품만 필터링
     final cartItems = widget.list.where((item) => item.cart == true).toList();
     return Scaffold(
       appBar: AppBar(title: const TitleImage()),
       body: cartItems.isEmpty
-          ? const NoCartItem()
-          : CartItem(list: cartItems), // 필터링된 상품만 보여줌
+          ? const NoCartItem() // 장바구니에 상품이 없을 때 화면
+          : CartItem(list: cartItems), // 장바구니에 상품이 있을 때 화면
+      // 구매하기 버튼
       bottomNavigationBar: GestureDetector(
         onTap: () {
           if (cartItems.isEmpty) {
@@ -56,8 +60,6 @@ class _CartState extends State<Cart> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        // cart == true인 상품만 필터링
-
                         final count = cartItems.length;
                         // 구매 처리 (cart 상태 초기화)
                         setState(() {

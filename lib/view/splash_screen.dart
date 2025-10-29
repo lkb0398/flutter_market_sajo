@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+// 스플래시 페이지
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }

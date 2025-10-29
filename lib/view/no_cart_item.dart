@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 장바구니에 상품이 없을 때 화면
 class NoCartItem extends StatelessWidget {
   const NoCartItem({super.key});
   @override

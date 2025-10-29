@@ -4,6 +4,7 @@ import 'package:flutter_market_sajo/view/cart.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 
+// 장바구니에 상품이 있을 때 화면
 class CartItem extends StatefulWidget {
   const CartItem({super.key, required this.list});
 

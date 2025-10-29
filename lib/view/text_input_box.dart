@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 텍스트 입력창 위젯
 class TextInputBox extends StatelessWidget {
   const TextInputBox({
     super.key,

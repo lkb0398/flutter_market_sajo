@@ -6,11 +6,12 @@ import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
+// 상품 생성 페이지
 class AddItem extends StatefulWidget {
-  const AddItem({super.key, required this.list, required this.onEmptyChanged});
-  // HomePage 받아오기
+  const AddItem({super.key, required this.list, required this.onChanged});
+
   final List<ItemModel> list;
-  final void Function() onEmptyChanged;
+  final void Function() onChanged;
 
   @override
   State<AddItem> createState() => _AddItemState();
@@ -60,7 +61,7 @@ class _AddItemState extends State<AddItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
-              // 이미지 선택 영역
+              // 상품 이미지 선택 영역
               GestureDetector(
                 onTap: selectImage,
                 child: ClipRRect(
@@ -168,7 +169,7 @@ class _AddItemState extends State<AddItem> {
               gravity: ToastGravity.CENTER,
             );
             Navigator.pop(context);
-            widget.onEmptyChanged();
+            widget.onChanged();
           }
         },
         child: Container(

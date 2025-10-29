@@ -5,8 +5,10 @@ import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
+// 상품 상세 페이지
 class DetailItem extends StatefulWidget {
   const DetailItem({super.key, required this.list, required this.index});
+
   final List<ItemModel> list;
   final int index;
 
@@ -27,6 +29,7 @@ class _DetailItemState extends State<DetailItem> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // 상품 이미지
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: SizedBox(
@@ -42,17 +45,16 @@ class _DetailItemState extends State<DetailItem> {
                 ),
               ),
               SizedBox(height: 16),
-
+              // 상품 이름
               AutoSizeText(
-                widget.list[widget.index].productName, // 제품명
+                widget.list[widget.index].productName,
                 maxLines: 1,
                 minFontSize: 14,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
-
               SizedBox(height: 16),
-
+              // 상품 가격
               AutoSizeText(
                 "${NumberFormat("#,###").format(widget.list[widget.index].price)}원", // 가격
                 maxLines: 1,
@@ -60,11 +62,10 @@ class _DetailItemState extends State<DetailItem> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 30, color: Colors.red),
               ),
-
               SizedBox(height: 16),
-
+              // 상품 설명
               Text(
-                widget.list[widget.index].description, // 상세설명
+                widget.list[widget.index].description,
                 style: TextStyle(fontSize: 25),
               ),
             ],
@@ -80,6 +81,7 @@ class _DetailItemState extends State<DetailItem> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // 상품 수량 조절
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.white24),
@@ -113,6 +115,7 @@ class _DetailItemState extends State<DetailItem> {
                     ],
                   ),
                 ),
+                // 총 가격
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -136,6 +139,7 @@ class _DetailItemState extends State<DetailItem> {
             ),
           ),
           SizedBox(height: 10),
+          // 장바구니 버튼
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(

@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
-      home: SplashScreen(), // 스플레시 화면
-      routes: {'/login': (context) => LoginPage()}, // Route 로 로그인 화면으로 이동
+      home: SplashScreen(), // 스플레시 페이지
+      routes: {'/login': (context) => LoginPage()}, // Route 로 로그인 페이지로 이동
     );
   }
 }
