@@ -13,14 +13,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<ItemModel> list = [];
-  void onEmptyChanged() {
-    setState(() {});
-  }
+  void onEmptyChanged() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF242424),
         leading: SizedBox(),
         title: Image.asset("assets/images/logo.webp", height: 200),
         actions: [

@@ -132,6 +132,12 @@ class _AddItemState extends State<AddItem> {
               msg: "상품 가격은 숫자로 입력해야 합니다",
               gravity: ToastGravity.CENTER,
             );
+          } else if (int.parse(priceController.text) < 0 ||
+              100000000000000000 < int.parse(priceController.text)) {
+            Fluttertoast.showToast(
+              msg: "잘못된 가격입니다",
+              gravity: ToastGravity.CENTER,
+            );
           } else if (descriptionController.text.isEmpty) {
             Fluttertoast.showToast(
               msg: "상품 설명을 입력하세요",

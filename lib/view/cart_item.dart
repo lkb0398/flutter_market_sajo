@@ -5,8 +5,11 @@ import 'package:intl/intl.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 
 class CartItem extends StatefulWidget {
-  const CartItem({super.key, required this.list});
+  const CartItem({super.key, required this.list, required this.onRemove});
+
   final List<ItemModel> list;
+  final void Function(ItemModel) onRemove;
+
   @override
   State<CartItem> createState() => _CartItemState();
 }
