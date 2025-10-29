@@ -24,7 +24,7 @@ class _CartItemState extends State<CartItem> {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text("장바구니에서 삭제하시겠습니까?"),
+                title: Text("장바구니에서 삭제하시겠습니까?", style: TextStyle(fontSize: 20)),
                 actions: [
                   TextButton(
                     onPressed: () {
@@ -32,7 +32,10 @@ class _CartItemState extends State<CartItem> {
                         Navigator.of(context).pop();
                       });
                     },
-                    child: Text("취소"),
+                    child: Text(
+                      "취소",
+                      style: TextStyle(fontSize: 20, color: Colors.grey),
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
@@ -47,7 +50,10 @@ class _CartItemState extends State<CartItem> {
                         ),
                       );
                     },
-                    child: Text("삭제"),
+                    child: Text(
+                      "삭제",
+                      style: TextStyle(fontSize: 20, color: Colors.red),
+                    ),
                   ),
                 ],
               ),
