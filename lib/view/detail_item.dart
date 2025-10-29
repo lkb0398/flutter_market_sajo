@@ -147,13 +147,18 @@ class _DetailItemState extends State<DetailItem> {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text("정말로 장바구니에 넣으시겠습니까?"),
+                    title: Text(
+                      "장바구니에 ${widget.list[widget.index].productName} 를 ${widget.list[widget.index].productCount} 개 담으시겠습니까?",
+                    ),
                     actions: [
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text("취소"),
+                        child: Text(
+                          "취소",
+                          style: TextStyle(fontSize: 20, color: Colors.grey),
+                        ),
                       ),
                       TextButton(
                         onPressed: () {
@@ -168,7 +173,13 @@ class _DetailItemState extends State<DetailItem> {
                             ..pop()
                             ..pop();
                         },
-                        child: Text("확인"),
+                        child: Text(
+                          "확인",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Color(0xFFA70E0E),
+                          ),
+                        ),
                       ),
                     ],
                   ),
