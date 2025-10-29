@@ -16,7 +16,7 @@ class NoItemList extends StatelessWidget {
         children: [
           Image.asset("assets/images/skeleton.webp", height: 200),
           SizedBox(height: 20),
-          Text("등록된 상품이 없습니다.", style: TextStyle(fontSize: 22)),
+          Text("등록된 상품이 없습니다", style: TextStyle(fontSize: 22)),
         ],
       ),
     );
