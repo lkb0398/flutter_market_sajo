@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/cart.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 class DetailItem extends StatefulWidget {
@@ -16,15 +16,13 @@ class DetailItem extends StatefulWidget {
 
 class _DetailItemState extends State<DetailItem> {
   int number = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF242424),
-        title: TitleImage(),
-      ),
+      appBar: AppBar(title: TitleImage()),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,141 +41,143 @@ class _DetailItemState extends State<DetailItem> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
+
               AutoSizeText(
+                widget.list[widget.index].productName, // 제품명
                 maxLines: 1,
-                '상품명 : ${widget.list[widget.index].productName}',
-                style: const TextStyle(fontSize: 15),
+                minFontSize: 14,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 16),
+
+              SizedBox(height: 16),
+
               AutoSizeText(
+                "${NumberFormat("#,###").format(widget.list[widget.index].price)}원", // 가격
                 maxLines: 1,
-                '상품 가격 : ${NumberFormat("#,###").format(widget.list[widget.index].price)}원',
-                style: const TextStyle(fontSize: 15),
+                minFontSize: 12,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 30, color: Colors.red),
               ),
-              const SizedBox(height: 16),
-              const Text("상품 설명"),
+
+              SizedBox(height: 16),
+
               Text(
-                widget.list[widget.index].description,
-                style: const TextStyle(fontSize: 15),
+                widget.list[widget.index].description, // 상세설명
+                style: TextStyle(fontSize: 25),
               ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: SafeArea(
-        top: false,
-        child: Container(
-          height: 70,
-          color: const Color(0xFF242424),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (number > 1) number--;
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  minimumSize: const Size(40, 40),
+
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white24),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            number--;
+                            if (number < 1) {
+                              number = 99;
+                            }
+                          });
+                        },
+                        child: Icon(Icons.remove, size: 50, color: Colors.red),
+                      ),
+                      Text("$number개", style: TextStyle(fontSize: 30)),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            number++;
+                            if (number > 99) {
+                              number = 1;
+                            }
+                          });
+                        },
+                        child: Icon(Icons.add, size: 50, color: Colors.red),
+                      ),
+                    ],
+                  ),
                 ),
-                child: const Text('-', style: TextStyle(color: Colors.black)),
-              ),
-              const SizedBox(width: 8),
-              Container(
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                color: Colors.white,
-                child: Text(
-                  '$number',
-                  style: const TextStyle(fontSize: 16, color: Colors.black),
-                ),
-              ),
-              const SizedBox(width: 8),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (number < 99) number++;
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  minimumSize: const Size(40, 40),
-                ),
-                child: const Text('+', style: TextStyle(color: Colors.black)),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Text('총 가격', style: TextStyle(color: Colors.white70)),
-                    AutoSizeText(
-                      '${NumberFormat("#,###").format(widget.list[widget.index].price * number)} 원',
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    Text("총 가격"),
+                    SizedBox(
+                      child: AutoSizeText(
+                        "${NumberFormat("#,###").format(widget.list[widget.index].price * number)}원",
+                        maxLines: 1,
+                        minFontSize: 5,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('장바구니에 담겼습니다.'),
-                      content: AutoSizeText(
-                        maxLines: 1,
-                        '총 ${NumberFormat("#,###").format(widget.list[widget.index].price * number)}원을 장바구니에 담으시겠습니까?',
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            widget.list[widget.index].productCount = number;
-                            widget.list[widget.index].cart = true;
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                          },
-                          child: const Text('더 구경하기'),
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            widget.list[widget.index].productCount = number;
-                            widget.list[widget.index].cart = true;
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Cart(
-                                  list: widget.list,
-                                ), // :흰색_확인_표시: 기존 리스트 그대로 전달
-                              ),
-                            );
-                            Navigator.pop(context);
-                          },
-                          child: const Text('장바구니 보기'),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFA70E0E),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 10,
-                  ),
-                ),
-                child: const Text(
-                  '장바구니',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+          SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(),
+                backgroundColor: Color(0xFFA70E0E),
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text("정말로 장바구니에 넣으시겠습니까?"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            widget.list[widget.index].productCount =
+                                widget.list[widget.index].productCount * 0 +
+                                number;
+                            widget.list[widget.index].cart = true;
+                          });
+                          Fluttertoast.showToast(msg: "장바구니에 담겼습니다.");
+                          Navigator.of(context)
+                            ..pop()
+                            ..pop();
+                        },
+                        child: Text("확인"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("취소"),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Image.asset("assets/images/cart.webp", height: 60),
+            ),
+          ),
+        ],
       ),
     );
   }
