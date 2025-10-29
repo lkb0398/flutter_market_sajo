@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Cart(list: [])),
+              MaterialPageRoute(builder: (context) => Cart(list: list)),
             ),
             icon: Icon(Icons.shopping_cart_outlined, size: 30),
           ),
