@@ -169,7 +169,10 @@ class _DetailItemState extends State<DetailItem> {
                                 number;
                             widget.list[widget.index].cart = true;
                           });
-                          Fluttertoast.showToast(msg: "장바구니에 담겼습니다.");
+                          Fluttertoast.showToast(
+                            msg: "장바구니에 담겼습니다.",
+                            gravity: ToastGravity.CENTER,
+                          );
                           Navigator.of(context)
                             ..pop()
                             ..pop();
