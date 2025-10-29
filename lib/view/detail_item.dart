@@ -148,6 +148,7 @@ class _DetailItemState extends State<DetailItem> {
                   context: context,
                   builder: (context) => AlertDialog(
                     title: Text(
+                      style: TextStyle(fontSize: 20),
                       "장바구니에 ${widget.list[widget.index].productName} 를 ${widget.list[widget.index].productCount} 개 담으시겠습니까?",
                     ),
                     actions: [
@@ -175,10 +176,7 @@ class _DetailItemState extends State<DetailItem> {
                         },
                         child: Text(
                           "확인",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color(0xFFA70E0E),
-                          ),
+                          style: TextStyle(fontSize: 20, color: Colors.red),
                         ),
                       ),
                     ],
