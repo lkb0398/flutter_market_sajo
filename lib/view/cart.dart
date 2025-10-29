@@ -28,6 +28,7 @@ class _CartState extends State<Cart> {
     setState(() {
       for (var item in cartItems) {
         item.cart = false; // 구매 완료 후 비우기
+        item.productCount = 1;
       }
     });
     Fluttertoast.showToast(
@@ -47,7 +48,29 @@ class _CartState extends State<Cart> {
           ? const NoCartItem()
           : CartItem(list: cartItems), // 필터링된 상품만 보여줌
       bottomNavigationBar: GestureDetector(
-        onTap: _buyItems,
+        onTap: () => showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("총 구매 금액은 입니다. 정말로 구매 하시겠습니까?"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("취소"),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    _buyItems();
+                  });
+                  Navigator.of(context).pop();
+                },
+                child: Text("구매", style: TextStyle(color: Colors.red)),
+              ),
+            ],
+          ),
+        ),
         child: Container(
           height: 70,
           width: double.infinity,
