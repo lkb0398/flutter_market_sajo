@@ -5,10 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 
 class CartItem extends StatefulWidget {
-  const CartItem({super.key, required this.list, required this.onRemove});
+  const CartItem({super.key, required this.list});
 
   final List<ItemModel> list;
-  final void Function(ItemModel) onRemove;
 
   @override
   State<CartItem> createState() => _CartItemState();
@@ -56,71 +55,79 @@ class _CartItemState extends State<CartItem> {
                 ),
               );
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: widget.list[index].image,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  spacing: 10,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: Colors.white)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AutoSizeText(
-                      maxLines: 1,
-                      widget.list[index].productName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: widget.list[index].image,
                     ),
-                    AutoSizeText(
-                      maxLines: 1,
-                      "${NumberFormat("#,###").format(widget.list[index].price * widget.list[index].productCount)}원",
-                      style: TextStyle(fontSize: 25, color: Colors.red),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white24),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        spacing: 5,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                widget.list[index].productCount--;
-                                if (widget.list[index].productCount < 1) {
-                                  widget.list[index].productCount = 99;
-                                }
-                              });
-                            },
-                            child: Icon(Icons.remove, color: Colors.red),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      spacing: 10,
+                      children: [
+                        AutoSizeText(
+                          maxLines: 1,
+                          widget.list[index].productName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
                           ),
-                          Text(
-                            "${widget.list[index].productCount}개",
-                            style: TextStyle(fontSize: 20),
+                        ),
+                        AutoSizeText(
+                          maxLines: 1,
+                          "${NumberFormat("#,###").format(widget.list[index].price * widget.list[index].productCount)}원",
+                          style: TextStyle(fontSize: 25, color: Colors.red),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white24),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                widget.list[index].productCount++;
-                                if (widget.list[index].productCount > 99) {
-                                  widget.list[index].productCount = 1;
-                                }
-                              });
-                            },
-                            child: Icon(Icons.add, color: Colors.red),
+                          child: Row(
+                            spacing: 5,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    widget.list[index].productCount--;
+                                    if (widget.list[index].productCount < 1) {
+                                      widget.list[index].productCount = 99;
+                                    }
+                                  });
+                                },
+                                child: Icon(Icons.remove, color: Colors.red),
+                              ),
+                              Text(
+                                "${widget.list[index].productCount}개",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    widget.list[index].productCount++;
+                                    if (widget.list[index].productCount > 99) {
+                                      widget.list[index].productCount = 1;
+                                    }
+                                  });
+                                },
+                                child: Icon(Icons.add, color: Colors.red),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         );

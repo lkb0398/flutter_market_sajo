@@ -45,15 +45,7 @@ class _CartState extends State<Cart> {
       appBar: AppBar(title: const TitleImage()),
       body: cartItems.isEmpty
           ? const NoCartItem()
-          : CartItem(
-              list: cartItems,
-              onRemove: (item) {
-                setState(() {
-                  item.cart = false;
-                  item.productCount = 1;
-                });
-              },
-            ), // 필터링된 상품만 보여줌
+          : CartItem(list: cartItems), // 필터링된 상품만 보여줌
       bottomNavigationBar: GestureDetector(
         onTap: _buyItems,
         child: Container(

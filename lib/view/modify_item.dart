@@ -28,6 +28,13 @@ class _ModifyItemState extends State<ModifyItem> {
     descriptionController.text = widget.itemModel.description;
   }
 
+  int numberSizeCheck(int number) {
+    if (number > 1000000000) {
+      return -1;
+    }
+    return number;
+  }
+
   // 이미지 선택 함수
   void selectImage() {
     ImagePicker()
@@ -53,6 +60,11 @@ class _ModifyItemState extends State<ModifyItem> {
     } else if (int.tryParse(priceController.text) == null) {
       Fluttertoast.showToast(
         msg: "상품 가격은 숫자로 입력해야 합니다",
+        gravity: ToastGravity.CENTER,
+      );
+    } else if (numberSizeCheck(int.parse(priceController.text)) < 0) {
+      Fluttertoast.showToast(
+        msg: "최대가격은 0~10억까지 입력가능합니다.",
         gravity: ToastGravity.CENTER,
       );
     } else if (descriptionController.text.isEmpty) {

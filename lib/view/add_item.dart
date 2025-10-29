@@ -133,7 +133,7 @@ class _AddItemState extends State<AddItem> {
               gravity: ToastGravity.CENTER,
             );
           } else if (int.parse(priceController.text) < 0 ||
-              100000000000000000 < int.parse(priceController.text)) {
+              1000000000 < int.parse(priceController.text)) {
             Fluttertoast.showToast(
               msg: "잘못된 가격입니다",
               gravity: ToastGravity.CENTER,

@@ -59,19 +59,21 @@ class _ItemListState extends State<ItemList> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     spacing: 10,
                     children: [
-                      Text(
+                      AutoSizeText(
+                        maxLines: 1,
                         widget.list[index].productName,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 30,
                         ),
                       ),
 
-                      Text(
+                      AutoSizeText(
+                        maxLines: 1,
                         widget.list[index].price == 0
                             ? "무료"
-                            : "${NumberFormat("#,###").format(widget.list[index].price)} 원",
-                        style: TextStyle(fontSize: 15),
+                            : "${NumberFormat("#,###").format(widget.list[index].price)}원",
+                        style: TextStyle(fontSize: 25, color: Colors.red),
                       ),
                     ],
                   ),
