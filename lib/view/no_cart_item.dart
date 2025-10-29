@@ -10,9 +10,13 @@ class NoCartItem extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: Column(
+        spacing: 20,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text("장바구니에 상품이 없습니다", style: TextStyle(fontSize: 22))],
+        children: [
+          Image.asset("assets/images/pumpkin.webp", height: 200),
+          Text("장바구니에 상품이 없습니다", style: TextStyle(fontSize: 22)),
+        ],
       ),
     );
   }
