@@ -21,6 +21,7 @@ class _CartItemState extends State<CartItem> {
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
         return InkWell(
+          // 상품 길게 탭 > 장바구니에서 상품 삭제
           onLongPress: () {
             showDialog(
               context: context,

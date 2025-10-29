@@ -21,6 +21,7 @@ class _ItemListState extends State<ItemList> {
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
         return InkWell(
+          // 상품 탭 > 상품 상세 페이지로 이동
           onTap: () {
             Navigator.push(
               context,
@@ -30,7 +31,7 @@ class _ItemListState extends State<ItemList> {
               ),
             );
           },
-          // 상품 탭 > 상품 상세 페이지로 이동
+          // 상품 길게 탭 > 상품 수정 페이지로 이동
           onLongPress: () async {
             final updatedItem = await Navigator.push(
               context,
