@@ -151,6 +151,12 @@ class _DetailItemState extends State<DetailItem> {
                     actions: [
                       TextButton(
                         onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("취소"),
+                      ),
+                      TextButton(
+                        onPressed: () {
                           setState(() {
                             widget.list[widget.index].productCount =
                                 widget.list[widget.index].productCount * 0 +
@@ -163,12 +169,6 @@ class _DetailItemState extends State<DetailItem> {
                             ..pop();
                         },
                         child: Text("확인"),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text("취소"),
                       ),
                     ],
                   ),
