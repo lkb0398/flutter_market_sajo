@@ -53,20 +53,17 @@ class _CartItemState extends State<CartItem> {
               ),
             );
           },
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.white)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: widget.list[index].image,
-                  ),
-                  Column(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: widget.list[index].image,
+                ),
+                Expanded(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     spacing: 10,
                     children: [
@@ -84,12 +81,14 @@ class _CartItemState extends State<CartItem> {
                         style: TextStyle(fontSize: 25, color: Colors.red),
                       ),
                       Container(
+                        width: 105,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white24),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Row(
                           spacing: 5,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             InkWell(
@@ -123,8 +122,8 @@ class _CartItemState extends State<CartItem> {
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
