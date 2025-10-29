@@ -8,7 +8,6 @@
       "version": "1.0.0+1",
       "dependencies": [
         "auto_size_text",
-        "cupertino_icons",
         "flutter",
         "fluttertoast",
         "image_picker",
@@ -82,11 +81,6 @@
         "flutter_web_plugins",
         "web"
       ]
-    },
-    {
-      "name": "cupertino_icons",
-      "version": "1.0.8",
-      "dependencies": []
     },
     {
       "name": "flutter",
