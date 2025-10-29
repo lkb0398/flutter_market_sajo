@@ -13,22 +13,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<ItemModel> list = [];
-  void onEmptyChanged() {
-    setState(() {});
-  }
+  void onEmptyChanged() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF242424),
         leading: SizedBox(),
         title: Image.asset("assets/images/logo.webp", height: 200),
         actions: [
           IconButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Cart(list: list)),
-            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Cart(list: [])),
+              );
+            },
             icon: Icon(Icons.shopping_cart_outlined, size: 30),
           ),
         ],

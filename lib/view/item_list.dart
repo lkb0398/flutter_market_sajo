@@ -43,37 +43,40 @@ class _ItemListState extends State<ItemList> {
             }
           },
           child: Container(
-            margin: EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: widget.list[index].image,
-                ),
-                Expanded(
-                  child: Column(
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.white)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: widget.list[index].image,
+                  ),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     spacing: 10,
                     children: [
-                      AutoSizeText(
-                        maxLines: 1,
+                      Text(
                         widget.list[index].productName,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 30,
+                          fontSize: 20,
                         ),
                       ),
 
-                      AutoSizeText(
-                        maxLines: 1,
-                        "${NumberFormat("#,###").format(widget.list[index].price)}원",
-                        style: TextStyle(fontSize: 25, color: Colors.red),
+                      Text(
+                        widget.list[index].price == 0
+                            ? "무료"
+                            : "${NumberFormat("#,###").format(widget.list[index].price)} 원",
+                        style: TextStyle(fontSize: 15),
                       ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
