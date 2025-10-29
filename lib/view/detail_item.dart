@@ -149,7 +149,7 @@ class _DetailItemState extends State<DetailItem> {
                   builder: (context) => AlertDialog(
                     title: Text(
                       style: TextStyle(fontSize: 20),
-                      "장바구니에 ${widget.list[widget.index].productName} 를 ${widget.list[widget.index].productCount} 개 담으시겠습니까?",
+                      "장바구니에 ${widget.list[widget.index].productName} 상품을 ${widget.list[widget.index].productCount} 개 담으시겠습니까?",
                     ),
                     actions: [
                       TextButton(
