@@ -33,7 +33,6 @@ class _CartState extends State<Cart> {
             return;
           } else {
             int totalPirce = 0;
-            ;
             for (var item in cartItems) {
               totalPirce += item.price * item.productCount;
             }
