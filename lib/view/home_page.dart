@@ -24,12 +24,10 @@ class _HomePageState extends State<HomePage> {
         title: Image.asset("assets/images/logo.webp", height: 200),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Cart(list: [])),
-              );
-            },
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Cart(list: list)),
+            ),
             icon: Icon(Icons.shopping_cart_outlined, size: 30),
           ),
         ],

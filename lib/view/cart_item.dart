@@ -1,9 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/detail_item.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_market_sajo/view/cart.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_market_sajo/model/item_model.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({super.key, required this.list, required this.onRemove});
@@ -21,47 +20,42 @@ class _CartItemState extends State<CartItem> {
     return ListView.builder(
       itemCount: widget.list.length,
       itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    DetailItem(list: widget.list, index: index),
-              ),
-            );
-          },
-          onLongPress: () {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: const Text('상품삭제'),
-                content: Text('${widget.list[index].productName}을 삭제하시겠습니까?'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      return Navigator.pop(context);
-                    },
-                    child: const Text('취소'),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      widget.onRemove(widget.list[index]);
-
-                      Navigator.pop(context);
-                      Fluttertoast.showToast(
-                        msg: '${widget.list[index].productName}이 삭제되었습니다',
-                        gravity: ToastGravity.CENTER,
-                      );
-                    },
-                    child: const Text('확인'),
-                  ),
-                ],
-              ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.all(10),
+        return Container(
+          margin: EdgeInsets.all(10),
+          child: InkWell(
+            onLongPress: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("장바구니에서 삭제하시겠습니까?"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          widget.list[index].productCount = 1;
+                          widget.list[index].cart = false;
+                        });
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => Cart(list: widget.list),
+                          ),
+                        );
+                      },
+                      child: Text("삭제"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          Navigator.of(context).pop();
+                        });
+                      },
+                      child: Text("취소"),
+                    ),
+                  ],
+                ),
+              );
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -84,12 +78,45 @@ class _CartItemState extends State<CartItem> {
                     AutoSizeText(
                       maxLines: 1,
                       "${NumberFormat("#,###").format(widget.list[index].price * widget.list[index].productCount)}원",
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 25, color: Colors.red),
                     ),
-                    AutoSizeText(
-                      maxLines: 1,
-                      "${NumberFormat("#,###").format(widget.list[index].productCount)}개",
-                      style: TextStyle(fontSize: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white24),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        spacing: 5,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                widget.list[index].productCount--;
+                                if (widget.list[index].productCount < 1) {
+                                  widget.list[index].productCount = 99;
+                                }
+                              });
+                            },
+                            child: Icon(Icons.remove, color: Colors.red),
+                          ),
+                          Text(
+                            "${widget.list[index].productCount}개",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                widget.list[index].productCount++;
+                                if (widget.list[index].productCount > 99) {
+                                  widget.list[index].productCount = 1;
+                                }
+                              });
+                            },
+                            child: Icon(Icons.add, color: Colors.red),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
