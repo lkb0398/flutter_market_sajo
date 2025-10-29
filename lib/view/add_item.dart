@@ -6,7 +6,6 @@ import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
-// 깃 테스트용 주석
 class AddItem extends StatefulWidget {
   const AddItem({super.key, required this.list, required this.onEmptyChanged});
   // HomePage 받아오기
