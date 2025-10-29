@@ -46,6 +46,7 @@ class _ItemListState extends State<ItemList> {
             padding: const EdgeInsets.all(20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 15,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
