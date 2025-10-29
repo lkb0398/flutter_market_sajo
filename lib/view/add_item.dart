@@ -51,7 +51,7 @@ class _AddItemState extends State<AddItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xFF242424), title: TitleImage()),
+      appBar: AppBar(title: TitleImage()),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -163,7 +163,7 @@ class _AddItemState extends State<AddItem> {
         child: Container(
           height: 70,
           width: double.infinity,
-          color: Color(0xFF242424),
+          color: Color(0xFFA70E0E),
           child: Image.asset(
             'assets/images/registration.webp',
             fit: BoxFit.contain,
