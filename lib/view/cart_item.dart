@@ -41,6 +41,7 @@ class _CartItemState extends State<CartItem> {
                   spacing: 10,
                   children: [
                     AutoSizeText(
+                      maxLines: 1,
                       widget.list[index].productName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -48,10 +49,12 @@ class _CartItemState extends State<CartItem> {
                       ),
                     ),
                     AutoSizeText(
+                      maxLines: 1,
                       "${NumberFormat("#,###").format(widget.list[index].price * widget.list[index].productCount)}원",
                       style: TextStyle(fontSize: 15),
                     ),
                     AutoSizeText(
+                      maxLines: 1,
                       "${NumberFormat("#,###").format(widget.list[index].productCount)}개",
                       style: TextStyle(fontSize: 15),
                     ),
