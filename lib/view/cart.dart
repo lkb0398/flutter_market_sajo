@@ -4,12 +4,14 @@ import 'package:flutter_market_sajo/view/cart_item.dart';
 import 'package:flutter_market_sajo/view/no_cart_item.dart';
 import 'package:flutter_market_sajo/view/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 class Cart extends StatefulWidget {
   const Cart({super.key, required this.list});
   final List<ItemModel> list;
   @override
   State<Cart> createState() => _CartState();
 }
+
 class _CartState extends State<Cart> {
   void _buyItems() {
     // cart == true인 상품만 필터링
@@ -34,15 +36,13 @@ class _CartState extends State<Cart> {
     );
     Navigator.pop(context); // 홈으로 복귀
   }
+
   @override
   Widget build(BuildContext context) {
     // cart == true 인 상품만 화면에 표시
     final cartItems = widget.list.where((item) => item.cart == true).toList();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF242424),
-        title: const TitleImage(),
-      ),
+      appBar: AppBar(title: const TitleImage()),
       body: cartItems.isEmpty
           ? const NoCartItem()
           : CartItem(list: cartItems), // 필터링된 상품만 보여줌
@@ -51,7 +51,7 @@ class _CartState extends State<Cart> {
         child: Container(
           height: 70,
           width: double.infinity,
-          color: const Color(0xFF242424),
+          color: const Color(0xFFA70E0E),
           child: Image.asset('assets/images/buy.webp', fit: BoxFit.contain),
         ),
       ),
