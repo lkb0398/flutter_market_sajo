@@ -9,6 +9,7 @@ class DetailItem extends StatefulWidget {
   const DetailItem({super.key, required this.list, required this.index});
   final List<ItemModel> list;
   final int index;
+
   @override
   State<DetailItem> createState() => _DetailItemState();
 }
@@ -44,17 +45,19 @@ class _DetailItemState extends State<DetailItem> {
               ),
               const SizedBox(height: 16),
               AutoSizeText(
+                maxLines: 1,
                 '상품명 : ${widget.list[widget.index].productName}',
                 style: const TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 16),
               AutoSizeText(
+                maxLines: 1,
                 '상품 가격 : ${NumberFormat("#,###").format(widget.list[widget.index].price)}원',
                 style: const TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 16),
               const Text("상품 설명"),
-              AutoSizeText(
+              Text(
                 widget.list[widget.index].description,
                 style: const TextStyle(fontSize: 15),
               ),
@@ -127,6 +130,7 @@ class _DetailItemState extends State<DetailItem> {
                     builder: (context) => AlertDialog(
                       title: const Text('장바구니에 담겼습니다.'),
                       content: AutoSizeText(
+                        maxLines: 1,
                         '총 ${NumberFormat("#,###").format(widget.list[widget.index].price * number)}원을 장바구니에 담으시겠습니까?',
                       ),
                       actions: [
