@@ -19,7 +19,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF242424),
         leading: SizedBox(),
         title: Image.asset("assets/images/logo.webp", height: 200),
         actions: [
