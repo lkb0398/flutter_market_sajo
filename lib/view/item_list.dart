@@ -42,24 +42,23 @@ class _ItemListState extends State<ItemList> {
               });
             }
           },
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.white)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: widget.list[index].image,
-                  ),
-                  Column(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: widget.list[index].image,
+                ),
+                Expanded(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     spacing: 10,
                     children: [
+                      //상품명
                       AutoSizeText(
+                        overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         widget.list[index].productName,
                         style: TextStyle(
@@ -67,9 +66,11 @@ class _ItemListState extends State<ItemList> {
                           fontSize: 30,
                         ),
                       ),
-
+                      // 가격
                       AutoSizeText(
+                        overflow: TextOverflow.ellipsis,
                         maxLines: 1,
+                        minFontSize: 5,
                         widget.list[index].price == 0
                             ? "무료"
                             : "${NumberFormat("#,###").format(widget.list[index].price)}원",
@@ -77,8 +78,8 @@ class _ItemListState extends State<ItemList> {
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
