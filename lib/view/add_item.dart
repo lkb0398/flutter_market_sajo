@@ -117,7 +117,12 @@ class _AddItemState extends State<AddItem> {
       bottomNavigationBar: GestureDetector(
         onTap: () {
           // 예외 처리
-          if (nameController.text.isEmpty) {
+          if (image == null) {
+            Fluttertoast.showToast(
+              msg: "상품 이미지를 선택하세요",
+              gravity: ToastGravity.CENTER,
+            );
+          } else if (nameController.text.isEmpty) {
             Fluttertoast.showToast(
               msg: "상품 이름을 입력하세요",
               gravity: ToastGravity.CENTER,
