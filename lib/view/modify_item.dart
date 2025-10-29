@@ -73,10 +73,7 @@ class _ModifyItemState extends State<ModifyItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF242424),
-        title: TitleImage(),
-      ),
+      appBar: AppBar(title: TitleImage()),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -144,7 +141,7 @@ class _ModifyItemState extends State<ModifyItem> {
         child: Container(
           height: 70,
           width: double.infinity,
-          color: const Color(0xFF242424),
+          color: const Color(0xFFA70E0E),
           child: Image.asset('assets/images/modify.webp', fit: BoxFit.contain),
         ),
       ),
