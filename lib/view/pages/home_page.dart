@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(),
+        leading: SizedBox(), // 뒤로가기 버튼 없애기
         title: Image.asset("assets/images/logo.webp", height: 200),
         actions: [
           // 장바구니 버튼
