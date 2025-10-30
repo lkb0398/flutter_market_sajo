@@ -8,16 +8,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 // 장바구니 페이지
-class Cart extends StatefulWidget {
-  const Cart({super.key, required this.list});
+class CartPage extends StatefulWidget {
+  const CartPage({super.key, required this.list});
 
   final List<ItemModel> list;
 
   @override
-  State<Cart> createState() => _CartState();
+  State<CartPage> createState() => _CartPageState();
 }
 
-class _CartState extends State<Cart> {
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     // bool cart == true 인 상품만 필터링

@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Cart(list: list)),
+              MaterialPageRoute(builder: (context) => CartPage(list: list)),
             ),
             icon: Icon(Icons.shopping_cart_outlined, size: 30),
           ),
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return AddItem(list: list, onChanged: onChanged);
+                return AddPage(list: list, onChanged: onChanged);
               },
             ),
           );

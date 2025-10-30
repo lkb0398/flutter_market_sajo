@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/pages/detail_page.dart';
+import 'package:flutter_market_sajo/view/detail_item.dart';
 import 'package:flutter_market_sajo/view/pages/modify_page.dart';
 import 'package:intl/intl.dart';
 
@@ -27,7 +27,7 @@ class _ItemListState extends State<ItemList> {
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                    DetailPage(list: widget.list, index: index),
+                    DetailItem(list: widget.list, index: index),
               ),
             );
           },

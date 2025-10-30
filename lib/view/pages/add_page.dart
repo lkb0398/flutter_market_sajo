@@ -8,17 +8,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 // 상품 생성 페이지
-class AddItem extends StatefulWidget {
-  const AddItem({super.key, required this.list, required this.onChanged});
+class AddPage extends StatefulWidget {
+  const AddPage({super.key, required this.list, required this.onChanged});
 
   final List<ItemModel> list;
   final void Function() onChanged;
 
   @override
-  State<AddItem> createState() => _AddItemState();
+  State<AddPage> createState() => _AddPageState();
 }
 
-class _AddItemState extends State<AddItem> {
+class _AddPageState extends State<AddPage> {
   // 사용자 입력값 받기 (TextField)
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();

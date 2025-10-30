@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
-      home: SplashScreen(), // 스플레시 페이지
+      home: SplashPage(), // 스플레시 페이지
       // 라우트 사용 코드
       // routes: {'/login': (context) => LoginPage()},
     );

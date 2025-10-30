@@ -48,7 +48,7 @@ class _CartItemState extends State<CartItem> {
                       Navigator.of(context).pop();
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => Cart(list: widget.list),
+                          builder: (context) => CartPage(list: widget.list),
                         ),
                       );
                     },

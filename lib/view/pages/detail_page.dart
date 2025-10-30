@@ -7,17 +7,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 // 상품 상세 페이지
-class DetailItem extends StatefulWidget {
-  const DetailItem({super.key, required this.list, required this.index});
+class DetailPage extends StatefulWidget {
+  const DetailPage({super.key, required this.list, required this.index});
 
   final List<ItemModel> list;
   final int index;
 
   @override
-  State<DetailItem> createState() => _DetailItemState();
+  State<DetailPage> createState() => _DetailPageState();
 }
 
-class _DetailItemState extends State<DetailItem> {
+class _DetailPageState extends State<DetailPage> {
   int number = 1;
 
   @override
