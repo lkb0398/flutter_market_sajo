@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/theme.dart';
 import 'package:flutter_market_sajo/view/pages/add_page.dart';
 import 'package:flutter_market_sajo/view/pages/cart_page.dart';
 import 'package:flutter_market_sajo/view/widgets/item_list.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           : ItemList(list: list)), // 등록된 상품이 있을 때 화면
       // 상품 추가 버튼
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFFA70E0E),
+        backgroundColor: cRed,
         shape: CircleBorder(),
         child: Icon(Icons.add, size: 50),
         onPressed: () {

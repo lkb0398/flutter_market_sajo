@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/login_info.dart';
+import 'package:flutter_market_sajo/theme.dart';
 import 'package:flutter_market_sajo/view/pages/home_page.dart';
 import 'package:flutter_market_sajo/view/widgets/text_input_box.dart';
 import 'package:flutter_market_sajo/view/widgets/title_image.dart';
@@ -89,7 +90,7 @@ class LoginPage extends StatelessWidget {
               child: Container(
                 height: 50,
                 width: double.infinity,
-                color: Color(0xFFA70E0E),
+                color: cRed,
                 child: Center(child: Text("로그인")),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/theme.dart';
 import 'package:flutter_market_sajo/view/widgets/cart_item_list.dart';
 import 'package:flutter_market_sajo/view/widgets/no_cart_item_list.dart';
 import 'package:flutter_market_sajo/view/widgets/title_image.dart';
@@ -89,7 +90,7 @@ class _CartState extends State<Cart> {
         child: Container(
           height: 70,
           width: double.infinity,
-          color: const Color(0xFFA70E0E),
+          color: cRed,
           child: Image.asset('assets/images/buy.webp', fit: BoxFit.contain),
         ),
       ),

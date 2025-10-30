@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_market_sajo/theme.dart';
 
 // 텍스트 입력창 위젯
 class TextInputBox extends StatelessWidget {
@@ -19,15 +20,15 @@ class TextInputBox extends StatelessWidget {
       onTapOutside: (event) => FocusScope.of(context).unfocus(),
       controller: controller,
       maxLines: maxLines,
-      cursorColor: Color(0xFFA70E0E),
+      cursorColor: cRed,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(8),
         border: OutlineInputBorder(),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFFA70E0E), width: 2),
+          borderSide: BorderSide(color: cRed, width: 2),
         ),
         hintText: hintText,
-        hintStyle: TextStyle(color: Color.fromARGB(255, 164, 164, 164)),
+        hintStyle: TextStyle(color: Colors.white70),
       ),
     );
   }

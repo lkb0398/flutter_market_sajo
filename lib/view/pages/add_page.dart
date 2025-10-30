@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/theme.dart';
 import 'package:flutter_market_sajo/view/widgets/text_input_box.dart';
 import 'package:flutter_market_sajo/view/widgets/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -70,7 +71,7 @@ class _AddItemState extends State<AddItem> {
                     aspectRatio: 3 / 2,
                     child: Container(
                       width: double.infinity,
-                      color: Color(0xFF242424),
+                      color: cGrey,
                       child: image != null
                           ? Image.file(image!, fit: BoxFit.cover)
                           : Center(child: Text("이미지 선택")),
@@ -175,7 +176,7 @@ class _AddItemState extends State<AddItem> {
         child: Container(
           height: 70,
           width: double.infinity,
-          color: Color(0xFFA70E0E),
+          color: cRed,
           child: Image.asset(
             'assets/images/registration.webp',
             fit: BoxFit.contain,

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
+import 'package:flutter_market_sajo/theme.dart';
 import 'package:flutter_market_sajo/view/widgets/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
@@ -145,7 +146,7 @@ class _DetailItemState extends State<DetailItem> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(),
-                backgroundColor: Color(0xFFA70E0E),
+                backgroundColor: cRed,
               ),
               onPressed: () {
                 showDialog(
