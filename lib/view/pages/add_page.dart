@@ -23,6 +23,14 @@ class _AddItemState extends State<AddItem> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  // 닫기
+  @override
+  void dispose() {
+    nameController.dispose();
+    priceController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
 
   // 앨범에서 이미지 가져오기 (ImagePicker)
   File? image;

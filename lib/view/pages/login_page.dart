@@ -13,6 +13,11 @@ class LoginPage extends StatelessWidget {
   // 사용자 입력값 받기 (TextField)
   final TextEditingController idController = TextEditingController();
   final TextEditingController pwController = TextEditingController();
+  // 닫기
+  void dispose() {
+    idController.dispose();
+    pwController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

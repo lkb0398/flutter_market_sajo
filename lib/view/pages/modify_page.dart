@@ -23,6 +23,14 @@ class _ModifyItemState extends State<ModifyItem> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   File? image;
+  // 닫기
+  @override
+  void dispose() {
+    nameController.dispose();
+    priceController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
