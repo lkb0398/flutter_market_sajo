@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_market_sajo/view/pages/login_page.dart';
 
 // 스플래시 페이지
 class SplashScreen extends StatefulWidget {
@@ -15,7 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
     // 일정 시간 후
     Future.delayed(Duration(seconds: 2), () {
       // 로그인 화면으로 이동
-      Navigator.pushReplacementNamed(context, '/login');
+      // 라우트 사용 코드 : Navigator.pushReplacementNamed(context, '/login');
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
     });
   }
 

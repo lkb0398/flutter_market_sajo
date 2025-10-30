@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/login_info.dart';
-import 'package:flutter_market_sajo/view/home_page.dart';
-import 'package:flutter_market_sajo/view/text_input_box.dart';
-import 'package:flutter_market_sajo/view/title_image.dart';
+import 'package:flutter_market_sajo/view/pages/home_page.dart';
+import 'package:flutter_market_sajo/view/widgets/text_input_box.dart';
+import 'package:flutter_market_sajo/view/widgets/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 // 로그인 페이지

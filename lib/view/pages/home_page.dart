@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/add_item.dart';
-import 'package:flutter_market_sajo/view/cart.dart';
-import 'package:flutter_market_sajo/view/item_list.dart';
-import 'package:flutter_market_sajo/view/no_item_list.dart';
+import 'package:flutter_market_sajo/view/pages/add_page.dart';
+import 'package:flutter_market_sajo/view/pages/cart_page.dart';
+import 'package:flutter_market_sajo/view/widgets/item_list.dart';
+import 'package:flutter_market_sajo/view/widgets/no_item_list.dart';
 
 // 홈 페이지
 class HomePage extends StatefulWidget {

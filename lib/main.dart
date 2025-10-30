@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_market_sajo/view/login_page.dart';
-import 'package:flutter_market_sajo/view/splash_screen.dart';
+import 'package:flutter_market_sajo/view/pages/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,8 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
       home: SplashScreen(), // 스플레시 페이지
-      routes: {'/login': (context) => LoginPage()}, // Route 로 로그인 페이지로 이동
+      // 라우트 사용 코드
+      // routes: {'/login': (context) => LoginPage()},
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_market_sajo/view/cart.dart';
+import 'package:flutter_market_sajo/view/pages/cart_page.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
 

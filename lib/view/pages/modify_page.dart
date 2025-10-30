@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/text_input_box.dart';
-import 'package:flutter_market_sajo/view/title_image.dart';
+import 'package:flutter_market_sajo/view/widgets/text_input_box.dart';
+import 'package:flutter_market_sajo/view/widgets/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 

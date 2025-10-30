@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/title_image.dart';
+import 'package:flutter_market_sajo/view/widgets/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
@@ -168,9 +168,7 @@ class _DetailItemState extends State<DetailItem> {
                       TextButton(
                         onPressed: () {
                           setState(() {
-                            widget.list[widget.index].productCount =
-                                widget.list[widget.index].productCount * 0 +
-                                number;
+                            widget.list[widget.index].productCount = number;
                             widget.list[widget.index].cart = true;
                           });
                           Fluttertoast.showToast(

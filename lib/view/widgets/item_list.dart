@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/detail_item.dart';
-import 'package:flutter_market_sajo/view/modify_item.dart';
+import 'package:flutter_market_sajo/view/pages/detail_page.dart';
+import 'package:flutter_market_sajo/view/pages/modify_page.dart';
 import 'package:intl/intl.dart';
 
 // 등록된 상품이 있을 때 화면

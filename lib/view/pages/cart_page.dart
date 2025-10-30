@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_market_sajo/model/item_model.dart';
-import 'package:flutter_market_sajo/view/cart_item.dart';
-import 'package:flutter_market_sajo/view/no_cart_item.dart';
-import 'package:flutter_market_sajo/view/title_image.dart';
+import 'package:flutter_market_sajo/view/widgets/cart_item_list.dart';
+import 'package:flutter_market_sajo/view/widgets/no_cart_item_list.dart';
+import 'package:flutter_market_sajo/view/widgets/title_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
